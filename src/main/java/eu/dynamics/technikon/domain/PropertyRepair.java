@@ -19,6 +19,7 @@ public class PropertyRepair {
 	private String description;
 	
 	
+	
 	public PropertyRepair(LocalDateTime date, String descriptionOfRepair, TypeOfRepair typeOfRepair,
 			StatusOfRepair statusOfRepair, BigDecimal costOfRepair, String ownerId, String description) {
 		super();
