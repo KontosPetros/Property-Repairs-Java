@@ -3,7 +3,7 @@ package eu.dynamics.technikon.domain;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class PropertyRepair {
+public class PropertyRepair implements Entity {
 
 	private LocalDateTime date;
 	private String descriptionOfRepair;
@@ -12,9 +12,10 @@ public class PropertyRepair {
 	private BigDecimal costOfRepair;
 	private String ownerId;
 	private String description;
+	private String propertyID;
 
 	public PropertyRepair(LocalDateTime date, String descriptionOfRepair, TypeOfRepair typeOfRepair,
-			StatusOfRepair statusOfRepair, BigDecimal costOfRepair, String ownerId, String description) {
+			StatusOfRepair statusOfRepair, BigDecimal costOfRepair, String ownerId, String description,String propertyID) {
 		super();
 		this.date = date;
 		this.descriptionOfRepair = descriptionOfRepair;
@@ -23,6 +24,7 @@ public class PropertyRepair {
 		this.costOfRepair = costOfRepair;
 		this.ownerId = ownerId;
 		this.description = description;
+		this.propertyID = propertyID;
 	}
 
 	public LocalDateTime getDate() {
@@ -81,10 +83,27 @@ public class PropertyRepair {
 		this.description = description;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "PropertyRepair [date=" + date + ", descriptionOfRepair=" + descriptionOfRepair + ", costOfRepair="
-				+ costOfRepair + ", ownerId=" + ownerId + ", description=" + description + "]";
+		return "PropertyRepair [date=" + date + ", descriptionOfRepair=" + descriptionOfRepair + ", typeOfRepair="
+				+ typeOfRepair + ", statusOfRepair=" + statusOfRepair + ", costOfRepair=" + costOfRepair + ", ownerId="
+				+ ownerId + ", description=" + description + ", propertyID=" + propertyID + "]";
+	}
+
+	@Override
+	public boolean isValid() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getPropertyID() {
+		return propertyID;
+	}
+
+	public void setPropertyID(String propertyID) {
+		this.propertyID = propertyID;
 	}
 
 }
