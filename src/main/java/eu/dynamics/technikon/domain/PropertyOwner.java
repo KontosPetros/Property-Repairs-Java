@@ -13,6 +13,7 @@ public class PropertyOwner implements Entity {
 	private String email;
 	private String username;
 	private String password;
+	private boolean isActive;
 
 	public PropertyOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
 			String email, String username, String password) {
@@ -25,6 +26,7 @@ public class PropertyOwner implements Entity {
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.isActive = true;
 	}
 
 	public String getVatNumber() {
@@ -103,6 +105,14 @@ public class PropertyOwner implements Entity {
 		if (!GeneralUtility.isValidEmail(email))
 			return false;
 		return true;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 }

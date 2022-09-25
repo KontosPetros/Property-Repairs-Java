@@ -1,11 +1,12 @@
 package eu.dynamics.technikon.domain;
 
 public class Property implements Entity{
-	String propertyID;
-	String address;
-	String yearOfConstruction;
-	TypeOfProperty typeOfProperty;
-	String vatNumber;
+	private String propertyID;
+	private String address;
+	private String yearOfConstruction;
+	private TypeOfProperty typeOfProperty;
+	private String vatNumber;
+	private boolean isActive;
 
 	public Property (String propertyID, String address, String yearOfConstruction, TypeOfProperty typeOfProperty,
 			String vatNumber) {
@@ -15,6 +16,7 @@ public class Property implements Entity{
 		this.yearOfConstruction = yearOfConstruction;
 		this.typeOfProperty = typeOfProperty;
 		this.vatNumber = vatNumber;
+		this.isActive = true;
 	}
 
 	public String getPropertyID() {
@@ -67,6 +69,14 @@ public class Property implements Entity{
 	public boolean isValid() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 }

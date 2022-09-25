@@ -63,6 +63,17 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner> i
 		return true;
 	}
 
+
+	@Override
+	public boolean deleteSafely(String vatNumber) {
+		PropertyOwner propertyOwner = readVatNumber(vatNumber);
+		if (propertyOwner == null)
+			return false;
+		
+		propertyOwner.setActive(false);
+		return true;
+	}
+
 	
 	
 	

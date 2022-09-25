@@ -11,6 +11,8 @@ public interface PropertyOwnerRepository extends Repository<PropertyOwner>{
 	boolean updateAddress(String vatNumber, String address);
 	boolean updatePassword(String vatNumber, String password);
 	
+	boolean deleteSafely(String vatNumber);
+	
 
 
 }

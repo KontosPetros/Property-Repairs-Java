@@ -29,16 +29,24 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property> implements 
 	}
 
 	@Override
-	public boolean permanentlyDelete(String propertyId) {
-		for(Property property : super.read()) {
+	public boolean deletePermanently(String propertyId) {
+		for (Property property : super.read()) {
 			if (property.getPropertyID().equals(propertyId))
 				super.read().remove(property);
-				return true;
+			return true;
 		}
-		
+
 		return false;
 	}
-	
-	
+
+	@Override
+	public boolean deleteSafely(String propertyId) {
+		Property property = readPropertyId(propertyId);
+		if (property == null)
+			return false;
+
+		property.setActive(false);
+		return true;
+	}
 
 }
