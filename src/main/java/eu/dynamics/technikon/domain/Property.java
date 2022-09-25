@@ -1,13 +1,13 @@
 package eu.dynamics.technikon.domain;
 
-public class Property {
+public class Property implements Entity{
 	String propertyID;
 	String address;
 	String yearOfConstruction;
 	TypeOfProperty typeOfProperty;
 	String vatNumber;
 
-	public Property(String propertyID, String address, String yearOfConstruction, TypeOfProperty typeOfProperty,
+	public Property (String propertyID, String address, String yearOfConstruction, TypeOfProperty typeOfProperty,
 			String vatNumber) {
 		super();
 		this.propertyID = propertyID;
@@ -61,6 +61,12 @@ public class Property {
 	public String toString() {
 		return "Property [propertyID=" + propertyID + ", address=" + address + ", yearOfConstruction="
 				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", vatNumber=" + vatNumber + "]";
+	}
+
+	@Override
+	public boolean isValid() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
