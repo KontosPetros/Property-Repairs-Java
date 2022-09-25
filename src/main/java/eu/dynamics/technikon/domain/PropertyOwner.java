@@ -1,8 +1,11 @@
 package eu.dynamics.technikon.domain;
 
-public class PropertyOwner {
+import eu.dynamics.technikon.utility.GeneralUtility;
+
+public class PropertyOwner implements Entity {
 
 	private String vatNumber;
+
 	private String name;
 	private String surname;
 	private String address;
@@ -93,6 +96,13 @@ public class PropertyOwner {
 		return "PropertyOwner [vatNumber=" + vatNumber + ", name=" + name + ", surname=" + surname + ", address="
 				+ address + ", phoneNumber=" + phoneNumber + ", email=" + email + ", username=" + username
 				+ ", password=" + password + "]";
+	}
+
+	@Override
+	public boolean isValid() {
+		if (!GeneralUtility.isValidEmail(email))
+			return false;
+		return true;
 	}
 
 }

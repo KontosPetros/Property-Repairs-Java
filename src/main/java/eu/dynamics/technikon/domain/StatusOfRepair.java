@@ -1,6 +1,6 @@
 package eu.dynamics.technikon.domain;
 
 public enum StatusOfRepair {
-	PENDING,IN_PROGRESS,COMPLETE,MODE
+	PENDING,IN_PROGRESS,COMPLETE
 
 }
