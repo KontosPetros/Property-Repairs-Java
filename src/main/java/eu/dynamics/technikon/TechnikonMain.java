@@ -1,26 +1,15 @@
 package eu.dynamics.technikon;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
-import java.time.LocalDateTime;
-import java.time.Month;
 
 import eu.dynamics.technikon.domain.PropertyOwner;
-import eu.dynamics.technikon.domain.PropertyRepair;
-import eu.dynamics.technikon.domain.StatusOfRepair;
-import eu.dynamics.technikon.domain.TypeOfRepair;
-import eu.dynamics.technikon.repository.PropertyOwnerRepository;
-import eu.dynamics.technikon.repository.PropertyRepairRepository;
-import eu.dynamics.technikon.repository.impl.PropertyOwnerRepositoryImpl;
-import eu.dynamics.technikon.repository.impl.PropertyRepairRepositoryImpl;
-
+import eu.dynamics.technikon.service.PropertyOwnerService;
+import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
 
 public class TechnikonMain {
 
 	public static void main(String[] args) {
 
-		
-		
 //		System.out.println("---------------------------- PropertyOwner----------------------------");
 //		PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", " ioannina", " 123", "email", "pe",
 //				"123");
@@ -44,18 +33,17 @@ public class TechnikonMain {
 //		test2Repository.add(test2);
 //		System.out.println(test2Repository.readRangeOfDates(LocalDateTime.of(2016, Month.JULY, 29, 19, 30, 40),
 //				LocalDateTime.of(2019, Month.JULY, 29, 19, 30, 40)));
-		
-		
-		
-		
+
 		Connection connection = JDBCConnection.getConnection();
-
+		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(connection);
+		propertyOwnerService.createTable();
+		propertyOwnerService.insertPropertyOwner(
+				new PropertyOwner("123456", "petros", " kontos", " ioannina", " 123", "email", "pe", "123"));
+		propertyOwnerService.insertPropertyOwner(
+				new PropertyOwner("654321", "kwstas", " sadads", " dadasda", " 897", "k@gmail", "ka", "456"));
 		
 		
-		
-		
-		
-
+		System.out.println(propertyOwnerService.findAll());
 	}
 
 }

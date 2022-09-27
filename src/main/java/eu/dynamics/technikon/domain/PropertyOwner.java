@@ -14,7 +14,11 @@ public class PropertyOwner implements Entity {
 	private String username;
 	private String password;
 	private boolean isActive;
-
+	
+	public PropertyOwner() {
+		
+	}
+	
 	public PropertyOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
 			String email, String username, String password) {
 		super();
