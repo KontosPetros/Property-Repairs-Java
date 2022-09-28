@@ -2,7 +2,7 @@ package eu.dynamics.technikon;
 
 import java.sql.Connection;
 
-import eu.dynamics.technikon.domain.PropertyOwner;
+import eu.dynamics.technikon.model.PropertyOwner;
 import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.service.PropertyOwnerService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
@@ -13,9 +13,28 @@ public class TechnikonMain {
 
 	public static void main(String[] args) {
 		EntityManager entityManager = JpaUtil.getEntityManager();
+		
+		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(entityManager);
+		
+		PropertyOwner propertyOwner = new PropertyOwner();
+		propertyOwner.setVatNumber("15264");
+		propertyOwner.setName("kostas");
+		propertyOwner.setAddress("papagou");
+		propertyOwner.setPassword("25648");
+		propertyOwner.setSurname("papadopoulos");
+		propertyOwner.setPhoneNumber("2356665");
+		propertyOwner.setUsername("aou");
+		propertyOwner.setEmail("gog@mail.com");
+		
+		try {
+			propertyOwnerService.addPropertyOwner(propertyOwner );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 //		System.out.println("---------------------------- PropertyOwner----------------------------");
-//		PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", " ioannina", " 123", "email", "pe",
+		//PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", " ioannina", " 123", "email", "pe",
 //				"123");
 //
 //		PropertyOwnerRepository testRepository = new PropertyOwnerRepositoryImpl();

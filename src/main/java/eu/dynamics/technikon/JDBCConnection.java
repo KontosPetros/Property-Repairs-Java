@@ -9,7 +9,7 @@ public class JDBCConnection {
 	private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/technikon_db?createDatabaseIfNotExist=true";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "asd@12#!!";
+	private static final String PASSWORD = "Paok28346";
 
 	private JDBCConnection() {
 
