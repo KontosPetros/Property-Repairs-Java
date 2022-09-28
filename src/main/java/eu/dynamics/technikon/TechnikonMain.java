@@ -1,21 +1,22 @@
 package eu.dynamics.technikon;
 
-import java.sql.Connection;
-
-import eu.dynamics.technikon.model.PropertyOwner;
+import eu.dynamics.technikon.domain.TypeOfProperty;
 import eu.dynamics.technikon.jpautil.JpaUtil;
+import eu.dynamics.technikon.model.Property;
+import eu.dynamics.technikon.model.PropertyOwner;
 import eu.dynamics.technikon.service.PropertyOwnerService;
+import eu.dynamics.technikon.service.PropertyService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
-
+import eu.dynamics.technikon.service.impl.PropertyServiceImpl;
 import jakarta.persistence.EntityManager;
 
 public class TechnikonMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		EntityManager entityManager = JpaUtil.getEntityManager();
-		
+
+		System.out.println("---------------------------- PropertyOwner----------------------------");
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(entityManager);
-		
 		PropertyOwner propertyOwner = new PropertyOwner();
 		propertyOwner.setVatNumber("15264");
 		propertyOwner.setName("kostas");
@@ -25,16 +26,28 @@ public class TechnikonMain {
 		propertyOwner.setPhoneNumber("2356665");
 		propertyOwner.setUsername("aou");
 		propertyOwner.setEmail("gog@mail.com");
-		
+
 		try {
-			propertyOwnerService.addPropertyOwner(propertyOwner );
+			propertyOwnerService.addPropertyOwner(propertyOwner);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("---------------------------- Property----------------------------");
 
-//		System.out.println("---------------------------- PropertyOwner----------------------------");
-		//PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", " ioannina", " 123", "email", "pe",
+		PropertyService propertyService = new PropertyServiceImpl(entityManager);
+		Property propertyTest = new Property();
+		propertyTest.setAddress("volos");
+		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+		propertyTest.setPropertyID("12345");
+		propertyTest.setYearOfConstruction("2019");
+		propertyTest.setVatNumber(propertyOwner.getVatNumber());
+		propertyService.addProperty(propertyTest);
+		
+
+//		
+		// PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", "
+		// ioannina", " 123", "email", "pe",
 //				"123");
 //
 //		PropertyOwnerRepository testRepository = new PropertyOwnerRepositoryImpl();
@@ -65,7 +78,7 @@ public class TechnikonMain {
 //		propertyOwnerService.insertPropertyOwner(
 //				new PropertyOwner("654321", "kwstas", " sadads", " dadasda", " 897", "k@gmail", "ka", "456"));
 //		
-		
+
 //      System.out.println(propertyOwnerService.findAll());
 	}
 
