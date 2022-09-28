@@ -3,12 +3,16 @@ package eu.dynamics.technikon;
 import java.sql.Connection;
 
 import eu.dynamics.technikon.domain.PropertyOwner;
+import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.service.PropertyOwnerService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
+
+import jakarta.persistence.EntityManager;
 
 public class TechnikonMain {
 
 	public static void main(String[] args) {
+		EntityManager entityManager = JpaUtil.getEntityManager();
 
 //		System.out.println("---------------------------- PropertyOwner----------------------------");
 //		PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", " ioannina", " 123", "email", "pe",
@@ -33,17 +37,17 @@ public class TechnikonMain {
 //		test2Repository.add(test2);
 //		System.out.println(test2Repository.readRangeOfDates(LocalDateTime.of(2016, Month.JULY, 29, 19, 30, 40),
 //				LocalDateTime.of(2019, Month.JULY, 29, 19, 30, 40)));
-
-		Connection connection = JDBCConnection.getConnection();
-		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(connection);
-		propertyOwnerService.createTable();
-		propertyOwnerService.insertPropertyOwner(
-				new PropertyOwner("123456", "petros", " kontos", " ioannina", " 123", "email", "pe", "123"));
-		propertyOwnerService.insertPropertyOwner(
-				new PropertyOwner("654321", "kwstas", " sadads", " dadasda", " 897", "k@gmail", "ka", "456"));
+//
+//		Connection connection = JDBCConnection.getConnection();
+//		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(connection);
+//		propertyOwnerService.createTable();
+//		propertyOwnerService.insertPropertyOwner(
+//				new PropertyOwner("123456", "petros", " kontos", " ioannina", " 123", "email", "pe", "123"));
+//		propertyOwnerService.insertPropertyOwner(
+//				new PropertyOwner("654321", "kwstas", " sadads", " dadasda", " 897", "k@gmail", "ka", "456"));
+//		
 		
-		
-		System.out.println(propertyOwnerService.findAll());
+//      System.out.println(propertyOwnerService.findAll());
 	}
 
 }
