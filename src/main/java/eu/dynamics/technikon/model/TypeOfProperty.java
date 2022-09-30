@@ -1,4 +1,4 @@
-package eu.dynamics.technikon.domain;
+package eu.dynamics.technikon.model;
 
 public enum TypeOfProperty {
 

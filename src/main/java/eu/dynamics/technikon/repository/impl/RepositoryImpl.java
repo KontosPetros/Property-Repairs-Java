@@ -1,30 +1,45 @@
 package eu.dynamics.technikon.repository.impl;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import eu.dynamics.technikon.domain.Entity;
 import eu.dynamics.technikon.repository.Repository;
+import jakarta.persistence.EntityManager;
 
-public class RepositoryImpl<T extends Entity> implements Repository<T> {
+public abstract class RepositoryImpl<T, K> implements Repository<T, K> {
 
-	private final List<T> list;
+	private EntityManager entityManager;
 
-	public RepositoryImpl() {
-		this.list = new ArrayList<>();
+	public RepositoryImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	public abstract String getEntityClassName();
+
+	public abstract Class<T> getEntityClass();
+
+	@Override
+	public Optional<T> add(T t) {
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(t);
+			entityManager.getTransaction().commit();
+			return Optional.of(t);
+		} catch (Exception e) {
+			return Optional.empty();
+		}
 	}
 
 	@Override
-	public boolean add(T t) {
-		list.add(t);
-		return true;
+	public List<T> read(int pageNumber, int pageSize) {
+		return entityManager.createQuery("from " + getEntityClassName()).getResultList();
 	}
 
 	@Override
-	public List<T> read() {
-		return list;
-	}
+	public Optional<T> read(K tId) {
 
-	
+		T t = entityManager.find(getEntityClass(), tId);
+		return t != null ? Optional.of(t) : Optional.empty();
+	}
 
 }

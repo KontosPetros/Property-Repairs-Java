@@ -1,9 +1,9 @@
 package eu.dynamics.technikon;
 
-import eu.dynamics.technikon.domain.TypeOfProperty;
 import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
+import eu.dynamics.technikon.model.TypeOfProperty;
 import eu.dynamics.technikon.service.PropertyOwnerService;
 import eu.dynamics.technikon.service.PropertyService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;

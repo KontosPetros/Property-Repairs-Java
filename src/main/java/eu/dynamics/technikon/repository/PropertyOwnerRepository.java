@@ -1,9 +1,11 @@
 package eu.dynamics.technikon.repository;
 
-import eu.dynamics.technikon.domain.PropertyOwner;
+import eu.dynamics.technikon.model.PropertyOwner;
 
-public interface PropertyOwnerRepository extends Repository<PropertyOwner>{
+public interface PropertyOwnerRepository extends Repository<PropertyOwner,Long>{
 	
+	
+	/*
 	PropertyOwner readVatNumber(String vatNumber);
 	PropertyOwner readEmail(String email);
 	
@@ -12,6 +14,8 @@ public interface PropertyOwnerRepository extends Repository<PropertyOwner>{
 	boolean updatePassword(String vatNumber, String password);
 	
 	boolean deleteSafely(String vatNumber);
+	
+	*/
 	
 
 

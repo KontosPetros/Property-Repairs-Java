@@ -1,6 +1,5 @@
 package eu.dynamics.technikon.model;
 
-import eu.dynamics.technikon.domain.TypeOfProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
