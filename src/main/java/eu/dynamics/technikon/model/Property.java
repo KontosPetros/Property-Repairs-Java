@@ -31,6 +31,22 @@ public class Property {
 	
 	
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public PropertyOwner getPropertyOwner() {
+		return propertyOwner;
+	}
+
+	public void setPropertyOwner(PropertyOwner propertyOwner) {
+		this.propertyOwner = propertyOwner;
+	}
+
 	public String getPropertyID() {
 		return propertyID;
 	}

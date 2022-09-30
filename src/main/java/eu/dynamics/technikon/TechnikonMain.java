@@ -5,7 +5,9 @@ import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
 import eu.dynamics.technikon.model.TypeOfProperty;
 import eu.dynamics.technikon.repository.PropertyOwnerRepository;
+import eu.dynamics.technikon.repository.PropertyRepository;
 import eu.dynamics.technikon.repository.impl.PropertyOwnerRepositoryImpl;
+import eu.dynamics.technikon.repository.impl.PropertyRepositoryImpl;
 import eu.dynamics.technikon.service.PropertyOwnerService;
 import eu.dynamics.technikon.service.PropertyService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
@@ -31,6 +33,19 @@ public class TechnikonMain {
 		propertyOwner.setEmail("gog@mail.com");
 
 		propertyOwnerService.addPropertyOwner(propertyOwner);
+		
+		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
+		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
+		Property propertyTest = new Property();
+		propertyTest.setAddress("volos");
+		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+		propertyTest.setPropertyID("12345");
+		propertyTest.setYearOfConstruction("2019");	
+		propertyTest.setPropertyOwner(propertyOwner);
+		propertyService.addProperty(propertyTest);
+
+		
+		
 
 //		System.out.println("---------------------------- Property----------------------------");
 //

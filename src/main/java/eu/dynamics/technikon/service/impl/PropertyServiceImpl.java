@@ -1,40 +1,31 @@
 package eu.dynamics.technikon.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import eu.dynamics.technikon.model.Property;
+import eu.dynamics.technikon.repository.Repository;
 import eu.dynamics.technikon.service.PropertyService;
-import jakarta.persistence.EntityManager;
 
-public class PropertyServiceImpl implements PropertyService{
-	
-	
-	private EntityManager entityManager;
-	
-	
+public class PropertyServiceImpl implements PropertyService {
 
-	public PropertyServiceImpl(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	private Repository<Property, Long> propertyRepository;
+
+	public PropertyServiceImpl(Repository<Property, Long> propertyRepository) {
+		this.propertyRepository = propertyRepository;
 	}
 
 	@Override
 	public void addProperty(Property property) throws Exception {
-		try {
-			entityManager.getTransaction().begin();
-            entityManager.persist(property);
-            entityManager.getTransaction().commit();
-		}
-		catch(Exception e) {
-			System.out.println(e.getMessage());
+		Optional<Property> dbproperty = propertyRepository.add(property);
+		if (dbproperty.isEmpty()) {
 			throw new Exception();
 		}
-		
 	}
 
 	@Override
 	public List<Property> displayProperty() {
-		// TODO Auto-generated method stub
-		return null;
+		return propertyRepository.read(1, 30);
 	}
 
 }

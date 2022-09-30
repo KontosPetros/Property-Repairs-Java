@@ -39,7 +39,10 @@ public abstract class RepositoryImpl<T, K> implements Repository<T, K> {
 	public Optional<T> read(K tId) {
 
 		T t = entityManager.find(getEntityClass(), tId);
-		return t != null ? Optional.of(t) : Optional.empty();
+		if(t == null) {
+			return Optional.empty();
+		}
+		return Optional.of(t);
 	}
 
 }

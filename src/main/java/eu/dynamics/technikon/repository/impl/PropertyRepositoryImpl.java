@@ -1,52 +1,69 @@
 package eu.dynamics.technikon.repository.impl;
 
-import eu.dynamics.technikon.domain.Property;
+import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.repository.PropertyRepository;
+import jakarta.persistence.EntityManager;
 
-public class PropertyRepositoryImpl extends RepositoryImpl<Property> implements PropertyRepository {
+public class PropertyRepositoryImpl extends RepositoryImpl<Property,Long> implements PropertyRepository {
+	
 
-	public PropertyRepositoryImpl() {
-		super();
-
+	public PropertyRepositoryImpl(EntityManager entityManager) {
+		super(entityManager);
 	}
 
 	@Override
-	public Property readVatNumber(String vatNumber) {
-		for (Property property : super.read()) {
-			if (property.getVatNumber().equals(vatNumber))
-				return property;
-		}
+	public String getEntityClassName() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Property readPropertyId(String propertyId) {
-		for (Property property : super.read()) {
-			if (property.getPropertyID().equals(propertyId))
-				return property;
-		}
+	public Class<Property> getEntityClass() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public boolean deletePermanently(String propertyId) {
-		for (Property property : super.read()) {
-			if (property.getPropertyID().equals(propertyId))
-				super.read().remove(property);
-			return true;
-		}
+	
 
-		return false;
-	}
+	
 
-	@Override
-	public boolean deleteSafely(String propertyId) {
-		Property property = readPropertyId(propertyId);
-		if (property == null)
-			return false;
-
-		property.setActive(false);
-		return true;
-	}
+//	@Override
+//	public Property readVatNumber(String vatNumber) {
+//		for (Property property : super.read()) {
+//			if (property.getVatNumber().equals(vatNumber))
+//				return property;
+//		}
+//		return null;
+//	}
+//
+//	@Override
+//	public Property readPropertyId(String propertyId) {
+//		for (Property property : super.read()) {
+//			if (property.getPropertyID().equals(propertyId))
+//				return property;
+//		}
+//		return null;
+//	}
+//
+//	@Override
+//	public boolean deletePermanently(String propertyId) {
+//		for (Property property : super.read()) {
+//			if (property.getPropertyID().equals(propertyId))
+//				super.read().remove(property);
+//			return true;
+//		}
+//
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean deleteSafely(String propertyId) {
+//		Property property = readPropertyId(propertyId);
+//		if (property == null)
+//			return false;
+//
+//		property.setActive(false);
+//		return true;
+//	}
 
 }
