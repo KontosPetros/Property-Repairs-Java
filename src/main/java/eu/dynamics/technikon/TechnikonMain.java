@@ -4,6 +4,8 @@ import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
 import eu.dynamics.technikon.model.TypeOfProperty;
+import eu.dynamics.technikon.repository.PropertyOwnerRepository;
+import eu.dynamics.technikon.repository.impl.PropertyOwnerRepositoryImpl;
 import eu.dynamics.technikon.service.PropertyOwnerService;
 import eu.dynamics.technikon.service.PropertyService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
@@ -16,7 +18,8 @@ public class TechnikonMain {
 		EntityManager entityManager = JpaUtil.getEntityManager();
 
 		System.out.println("---------------------------- PropertyOwner----------------------------");
-		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(entityManager);
+		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
+		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
 		PropertyOwner propertyOwner = new PropertyOwner();
 		propertyOwner.setVatNumber("15264");
 		propertyOwner.setName("kostas");
@@ -27,23 +30,18 @@ public class TechnikonMain {
 		propertyOwner.setUsername("aou");
 		propertyOwner.setEmail("gog@mail.com");
 
-		try {
-			propertyOwnerService.addPropertyOwner(propertyOwner);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("---------------------------- Property----------------------------");
+		propertyOwnerService.addPropertyOwner(propertyOwner);
 
-		PropertyService propertyService = new PropertyServiceImpl(entityManager);
-		Property propertyTest = new Property();
-		propertyTest.setAddress("volos");
-		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
-		propertyTest.setPropertyID("12345");
-		propertyTest.setYearOfConstruction("2019");
-		propertyTest.setVatNumber(propertyOwner.getVatNumber());
-		propertyService.addProperty(propertyTest);
-		
+//		System.out.println("---------------------------- Property----------------------------");
+//
+//		PropertyService propertyService = new PropertyServiceImpl(entityManager);
+//		Property propertyTest = new Property();
+//		propertyTest.setAddress("volos");
+//		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+//		propertyTest.setPropertyID("12345");
+//		propertyTest.setYearOfConstruction("2019");
+//		propertyTest.setVatNumber(propertyOwner.getVatNumber());
+//		propertyService.addProperty(propertyTest);
 
 //		
 		// PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", "

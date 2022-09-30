@@ -3,7 +3,7 @@ package eu.dynamics.technikon.repository.impl;
 import java.time.LocalDateTime;
 
 
-import eu.dynamics.technikon.domain.PropertyRepair;
+import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
 
 public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair> implements PropertyRepairRepository {

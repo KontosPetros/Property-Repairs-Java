@@ -1,18 +1,36 @@
 package eu.dynamics.technikon.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Property {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	
+	@Column(unique = true)
 	private String propertyID;
 	private String address;
 	private String yearOfConstruction;
 	private TypeOfProperty typeOfProperty;
-	private String vatNumber;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+        name = "vatNumber",
+        referencedColumnName = "vatNumber"
+    )
+	private PropertyOwner propertyOwner;
+	
+	
+	
 	public String getPropertyID() {
 		return propertyID;
 	}
@@ -29,10 +47,6 @@ public class Property {
 		return typeOfProperty;
 	}
 
-	public String getVatNumber() {
-		return vatNumber;
-	}
-
 	public void setPropertyID(String propertyID) {
 		this.propertyID = propertyID;
 	}
@@ -47,10 +61,6 @@ public class Property {
 
 	public void setTypeOfProperty(TypeOfProperty typeOfProperty) {
 		this.typeOfProperty = typeOfProperty;
-	}
-
-	public void setVatNumber(String vatNumber) {
-		this.vatNumber = vatNumber;
 	}
 
 }

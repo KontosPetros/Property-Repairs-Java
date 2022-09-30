@@ -28,7 +28,7 @@ public class PropertyOwner {
 	private String username;
 	private String password;
 
-	@OneToMany(mappedBy = "property")
+	@OneToMany(mappedBy = "propertyOwner")
 	private List<Property> properties;
 
 	public String getVatNumber() {

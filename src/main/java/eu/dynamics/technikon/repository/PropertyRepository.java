@@ -1,8 +1,6 @@
 package eu.dynamics.technikon.repository;
 
-import eu.dynamics.technikon.domain.Property;
-
-
+import eu.dynamics.technikon.model.Property;
 
 public interface PropertyRepository extends Repository<Property>{
 	

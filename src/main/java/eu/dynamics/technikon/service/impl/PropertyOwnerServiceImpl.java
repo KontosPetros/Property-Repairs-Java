@@ -17,7 +17,7 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 	@Override
 	public void addPropertyOwner(PropertyOwner propertyOwner) throws Exception {
 		Optional<PropertyOwner> dbPropertyOwner = propertyOwnerRepository.add(propertyOwner);
-		if (dbPropertyOwner.isPresent()) {
+		if (dbPropertyOwner.isEmpty()) {
 			throw new Exception();
 		}
 
