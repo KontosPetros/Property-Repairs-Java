@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 import eu.dynamics.technikon.model.PropertyRepair;
 
-public interface PropertyRepairRepository extends Repository<PropertyRepair>{
+public interface PropertyRepairRepository extends Repository<PropertyRepair, Long>{
 	
-       PropertyRepair readDate(LocalDateTime date);
-       PropertyRepair readRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil);
+//       PropertyRepair readDate(LocalDateTime date);
+//       PropertyRepair readRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil);
        
 }

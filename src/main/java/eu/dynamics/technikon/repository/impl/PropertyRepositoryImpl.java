@@ -4,8 +4,7 @@ import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.repository.PropertyRepository;
 import jakarta.persistence.EntityManager;
 
-public class PropertyRepositoryImpl extends RepositoryImpl<Property,Long> implements PropertyRepository {
-	
+public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> implements PropertyRepository {
 
 	public PropertyRepositoryImpl(EntityManager entityManager) {
 		super(entityManager);
@@ -13,19 +12,15 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property,Long> implem
 
 	@Override
 	public String getEntityClassName() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Property.class.getName();
 	}
 
 	@Override
 	public Class<Property> getEntityClass() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Property.class;
 	}
-
-	
-
-	
 
 //	@Override
 //	public Property readVatNumber(String vatNumber) {
