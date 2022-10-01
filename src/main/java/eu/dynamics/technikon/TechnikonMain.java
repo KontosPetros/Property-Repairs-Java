@@ -30,43 +30,49 @@ public class TechnikonMain {
 		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
 		PropertyOwner propertyOwner = new PropertyOwner();
-		propertyOwner.setVatNumber("15264");
+		propertyOwner.setVatNumber("421");
 		propertyOwner.setName("kostas");
 		propertyOwner.setAddress("papagou");
 		propertyOwner.setPassword("25648");
 		propertyOwner.setSurname("papadopoulos");
 		propertyOwner.setPhoneNumber("2356665");
 		propertyOwner.setUsername("aou");
-		propertyOwner.setEmail("gog@mail.com");
-
-		propertyOwnerService.addPropertyOwner(propertyOwner);
-		
-		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
-		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
-		Property propertyTest = new Property();
-		propertyTest.setAddress("volos");
-		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
-		propertyTest.setPropertyID("12345");
-		propertyTest.setYearOfConstruction("2019");	
-		propertyTest.setPropertyOwner(propertyOwner);
-		propertyService.addProperty(propertyTest);
-		
-		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
-		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
-		PropertyRepair propertyRepairTest = new PropertyRepair();
-		propertyRepairTest.setScheduledDate(null);
-		propertyRepairTest.setDescription("sadsa");
-		propertyRepairTest.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
-		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
-		propertyRepairTest.setCost(null);
-		propertyRepairTest.setWorkDescription("sadsadas");
-		propertyRepairTest.setProperty(propertyTest);
-		propertyRepairTest.setOwnerID(propertyTest.getPropertyOwner().getVatNumber());
-        propertyRepairService.addPropertyRepair(propertyRepairTest);
+		propertyOwner.setEmail("kostas@mail.com");
 		
 		
-
+		
+		System.out.println(propertyOwnerService.searchVatNumber("13"));
+		
+		//propertyOwnerService.addPropertyOwner(propertyOwner);
+		
 //		System.out.println("---------------------------- Property----------------------------");
+//		
+//		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
+//		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
+//		Property propertyTest = new Property();
+//		propertyTest.setAddress("volos");
+//		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+//		propertyTest.setPropertyID("12345");
+//		propertyTest.setYearOfConstruction("2019");	
+//		propertyTest.setPropertyOwner(propertyOwner);
+		//propertyService.addProperty(propertyTest);
+//		
+//		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
+//		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
+//		PropertyRepair propertyRepairTest = new PropertyRepair();
+//		propertyRepairTest.setScheduledDate(null);
+//		propertyRepairTest.setDescription("sadsa");
+//		propertyRepairTest.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
+//		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
+//		propertyRepairTest.setCost(null);
+//		propertyRepairTest.setWorkDescription("sadsadas");
+//		propertyRepairTest.setProperty(propertyTest);
+//		propertyRepairTest.setOwnerID(propertyTest.getPropertyOwner().getVatNumber());
+//        propertyRepairService.addPropertyRepair(propertyRepairTest);
+		
+		
+
+
 //
 //		PropertyService propertyService = new PropertyServiceImpl(entityManager);
 //		Property propertyTest = new Property();
