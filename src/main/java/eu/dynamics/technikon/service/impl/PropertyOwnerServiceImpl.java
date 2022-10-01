@@ -39,4 +39,13 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 		return result;
 	}
 
+	@Override
+	public PropertyOwner searchEmail(String email) throws PropertyOwnerException {
+		PropertyOwner searchEmailResult = propertyOwnerRepository.readEmail(email);
+		if (searchEmailResult == null) {
+			throw new PropertyOwnerException("the property owner with email: " + email + "does not exists");
+		}
+		return searchEmailResult;
+	}
+
 }

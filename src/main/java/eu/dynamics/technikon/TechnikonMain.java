@@ -39,11 +39,13 @@ public class TechnikonMain {
 		propertyOwner.setUsername("aou");
 		propertyOwner.setEmail("kostas@mail.com");
 		
+		propertyOwnerService.addPropertyOwner(propertyOwner);
 		
 		
-		System.out.println(propertyOwnerService.searchVatNumber("13"));
+    //System.out.println(propertyOwnerService.searchVatNumber("421"));
+	//System.out.println(propertyOwnerService.searchEmail("kostas@mail.com"));
 		
-		//propertyOwnerService.addPropertyOwner(propertyOwner);
+		
 		
 //		System.out.println("---------------------------- Property----------------------------");
 //		

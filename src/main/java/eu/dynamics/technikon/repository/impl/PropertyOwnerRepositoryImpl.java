@@ -23,7 +23,9 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 	@Override
 	public PropertyOwner readEmail(String email) {
 
-		return null;
+		return (PropertyOwner) super.getEntityManager()
+				.createQuery("SELECT c FROM PropertyOwner c Where c.email = :value")
+				.setParameter("value", email).getSingleResult();
 	}
 
 	@Override
