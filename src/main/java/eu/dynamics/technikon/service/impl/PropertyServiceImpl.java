@@ -20,7 +20,7 @@ public class PropertyServiceImpl implements PropertyService {
 	public void addProperty(Property property) throws PropertyException {
 		Optional<Property> dbproperty = propertyRepository.add(property);
 		if (dbproperty.isEmpty()) {
-			throw new PropertyException("The property has not been added");
+			throw new PropertyException("The property has not been added ");
 		}
 	}
 
