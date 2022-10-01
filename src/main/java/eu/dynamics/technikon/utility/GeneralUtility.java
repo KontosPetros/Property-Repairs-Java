@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
 
 public class GeneralUtility {
@@ -30,5 +31,14 @@ public class GeneralUtility {
 
 		return true;
 	}
-
+     public static boolean isValidProperty (String propertyID, List<Property> list) {
+    	 if(propertyID == null) return false;
+    	 for (Property property : list) {
+    		 if(property.getPropertyID().equals(propertyID)) {
+    			 return false;
+    		 }
+    	 }
+    	 return true; 
+     }
+     
 }
