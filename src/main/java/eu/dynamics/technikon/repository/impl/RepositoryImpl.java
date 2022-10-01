@@ -30,6 +30,7 @@ public abstract class RepositoryImpl<T, K> implements Repository<T, K> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> read(int pageNumber, int pageSize) {
 		return entityManager.createQuery("from " + getEntityClassName()).getResultList();
@@ -43,6 +44,10 @@ public abstract class RepositoryImpl<T, K> implements Repository<T, K> {
 			return Optional.empty();
 		}
 		return Optional.of(t);
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }
