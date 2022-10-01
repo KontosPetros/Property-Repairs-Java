@@ -28,5 +28,6 @@ public class PropertyServiceImpl implements PropertyService {
 	public List<Property> displayProperty() {
 		return propertyRepository.read(1, 30);
 	}
+	
 
 }
