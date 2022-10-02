@@ -28,23 +28,7 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 				.setParameter("value", email).getSingleResult();
 	}
 
-	@Override
-	public boolean updateEmail(String vatNumber, String email) {
-
-		return true;
-	}
-
-	@Override
-	public boolean updateAddress(String vatNumber, String address) {
-
-		return true;
-	}
-
-	@Override
-	public boolean updatePassword(String vatNumber, String password) {
-
-		return true;
-	}
+	
 
 //	@Override
 //	public boolean deleteSafely(String vatNumber) {

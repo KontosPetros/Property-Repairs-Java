@@ -1,5 +1,8 @@
 package eu.dynamics.technikon;
 
+import java.util.Optional;
+
+import eu.dynamics.technikon.exception.PropertyException;
 import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
@@ -29,17 +32,20 @@ public class TechnikonMain {
 		System.out.println("---------------------------- PropertyOwner----------------------------");
 		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
-		PropertyOwner propertyOwner = new PropertyOwner();
-		propertyOwner.setVatNumber("421");
-		propertyOwner.setName("kostas");
-		propertyOwner.setAddress("papagou");
-		propertyOwner.setPassword("25648");
-		propertyOwner.setSurname("papadopoulos");
-		propertyOwner.setPhoneNumber("2356665");
-		propertyOwner.setUsername("aou");
-		propertyOwner.setEmail("kostas@mail.com");
+//		PropertyOwner propertyOwner = new PropertyOwner();
+//		propertyOwner.setVatNumber("421");
+//		propertyOwner.setName("kostas");
+//		propertyOwner.setAddress("papagou");
+//		propertyOwner.setPassword("25648");
+//		propertyOwner.setSurname("papadopoulos");
+//		propertyOwner.setPhoneNumber("2356665");
+//		propertyOwner.setUsername("aou");
+//		propertyOwner.setEmail("kostas@mail.com");
 		
-		propertyOwnerService.addPropertyOwner(propertyOwner);
+		propertyOwnerService.updatePropertyOwner(1L);
+		
+		
+		
 		
 		
     //System.out.println(propertyOwnerService.searchVatNumber("421"));
