@@ -45,7 +45,7 @@ public class TechnikonMain {
 		
 //		propertyOwnerService.addPropertyOwner(propertyOwner);
 		
-		propertyOwnerService.updatePropertyOwner(1L);
+		propertyOwnerService.updatePropertyOwner(1L,"takis@mail.com","papagou","48586");
 		
 		
 		

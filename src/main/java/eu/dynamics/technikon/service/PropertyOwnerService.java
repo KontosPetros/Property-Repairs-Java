@@ -16,5 +16,5 @@ public interface PropertyOwnerService {
 
 	List<PropertyOwner> displayPropertyOwner();
 	
-	boolean updatePropertyOwner(Long propertyOwnerId) throws PropertyOwnerException;
+	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password) throws PropertyOwnerException;
 }
