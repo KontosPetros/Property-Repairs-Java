@@ -51,9 +51,16 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 	}
 
 	@Override
+
 	public boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)
 			throws PropertyOwnerException {
 		return propertyOwnerRepository.updatePropertyOwner(propertyOwnerId, email, address, password);
+	}
+
+	@Override
+	public boolean deleteSafely(String vatNumber) throws PropertyOwnerException {
+		
+		return propertyOwnerRepository.deleteSafely(vatNumber);
 	}
 
 	

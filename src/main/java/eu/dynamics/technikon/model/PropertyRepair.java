@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 @Entity
 public class PropertyRepair {
 
@@ -22,9 +23,16 @@ public class PropertyRepair {
 	private StatusOfRepair statusOfRepair;
 	private BigDecimal cost;
 	private String workDescription;
-	private String ownerID;
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "vatNumber",
+            referencedColumnName = "vatNumber"
+        )
+	private PropertyOwner propertyOwner;
 
-	@ManyToOne( fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "propertyID", referencedColumnName = "propertyID")
 	private Property property;
 
@@ -84,12 +92,12 @@ public class PropertyRepair {
 		this.workDescription = workDescription;
 	}
 
-	public String getOwnerID() {
-		return ownerID;
+	public PropertyOwner getOwner() {
+		return propertyOwner;
 	}
 
-	public void setOwnerID(String ownerID) {
-		this.ownerID = ownerID;
+	public void setOwner(PropertyOwner propertyOwner) {
+		this.propertyOwner = propertyOwner;
 	}
 
 	public Property getProperty() {

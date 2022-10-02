@@ -28,21 +28,9 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 	public PropertyOwner readEmail(String email) {
 
 		return (PropertyOwner) super.getEntityManager()
-				.createQuery("SELECT c FROM PropertyOwner c Where c.email = :value")
-				.setParameter("value", email).getSingleResult();
+				.createQuery("SELECT c FROM PropertyOwner c Where c.email = :value").setParameter("value", email)
+				.getSingleResult();
 	}
-
-	
-
-//	@Override
-//	public boolean deleteSafely(String vatNumber) {
-//		PropertyOwner propertyOwner = readVatNumber(vatNumber);
-//		if (propertyOwner == null)
-//			return false;
-//		
-//		propertyOwner.setActive(false);
-//		return true;
-//	}
 
 	@Override
 	public String getEntityClassName() {
@@ -56,28 +44,37 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 	}
 
 	@Override
-	public boolean deleteSafely(String vatNumber) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteSafely(String vatNumber) throws PropertyOwnerException {
+		PropertyOwner propertyOwnerToDelete = readVatNumber(vatNumber);
+		if (propertyOwnerToDelete == null) {
+			throw new PropertyOwnerException("the property owner with vat number " + vatNumber + " does not exists");
+		}
+		super.getEntityManager().getTransaction().begin();
+		propertyOwnerToDelete.setActive(0);
+		super.getEntityManager().getTransaction().commit();
+
+		return true;
 	}
-	
+
 	@Override
-	public boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password) throws PropertyOwnerException{
+	public boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)
+			throws PropertyOwnerException {
 		Optional<PropertyOwner> propertyOwner = super.read(propertyOwnerId);
 		if (propertyOwner.isPresent()) {
-			if (GeneralUtility.isValidEmail(email)){
+			if (GeneralUtility.isValidEmail(email)) {
 				propertyOwner.get().setEmail(email);
 			} else {
 				throw new PropertyOwnerException("the email:" + email + " is not valid");
 			}
-			
+
 			propertyOwner.get().setAddress(address);
 			propertyOwner.get().setPassword(password);
 			super.add(propertyOwner.get());
-			
+
 			return true;
-		
+
 		}
+		System.out.println("property owner does not exists");
 		return false;
 	}
 

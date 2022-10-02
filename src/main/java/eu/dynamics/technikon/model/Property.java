@@ -25,7 +25,7 @@ public class Property {
 	private String yearOfConstruction;
 	private TypeOfProperty typeOfProperty;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
     @JoinColumn(
         name = "vatNumber",
         referencedColumnName = "vatNumber"
@@ -81,6 +81,13 @@ public class Property {
 
 	public void setTypeOfProperty(TypeOfProperty typeOfProperty) {
 		this.typeOfProperty = typeOfProperty;
+	}
+
+	@Override
+	public String toString() {
+		return "Property [id=" + id + ", propertyID=" + propertyID + ", address=" + address + ", yearOfConstruction="
+				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner=" + propertyOwner
+				+ ", propertyRepairs=" + propertyRepairs + "]";
 	}
 
 }

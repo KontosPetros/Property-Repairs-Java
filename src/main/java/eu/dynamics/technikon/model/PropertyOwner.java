@@ -2,6 +2,8 @@ package eu.dynamics.technikon.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@Where(clause = "isActive = 1")
 public class PropertyOwner {
 
 	@Id
@@ -30,6 +33,8 @@ public class PropertyOwner {
 
 	@OneToMany(mappedBy = "propertyOwner")
 	private List<Property> properties;
+
+	private Integer isActive = 1;
 
 	public String getVatNumber() {
 		return vatNumber;
@@ -101,7 +106,13 @@ public class PropertyOwner {
 				+ ", address=" + address + ", phoneNumber=" + phoneNumber + ", email=" + email + ", username="
 				+ username + ", password=" + password + ", properties=" + properties + "]";
 	}
-	
-	
+
+	public Integer isActive() {
+		return isActive;
+	}
+
+	public void setActive(Integer isActive) {
+		this.isActive = isActive;
+	}
 
 }

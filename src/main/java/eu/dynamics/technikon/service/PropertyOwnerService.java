@@ -8,13 +8,15 @@ import eu.dynamics.technikon.model.PropertyOwner;
 public interface PropertyOwnerService {
 
 	void addPropertyOwner(PropertyOwner propertyOwner) throws PropertyOwnerException;
-	
-	
+
 	PropertyOwner searchVatNumber(String vatNumber) throws PropertyOwnerException;
+
 	PropertyOwner searchEmail(String email) throws PropertyOwnerException;
 
-
 	List<PropertyOwner> displayPropertyOwner();
-	
-	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password) throws PropertyOwnerException;
+
+	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)
+			throws PropertyOwnerException;
+
+	boolean deleteSafely(String vatNumber) throws PropertyOwnerException;
 }

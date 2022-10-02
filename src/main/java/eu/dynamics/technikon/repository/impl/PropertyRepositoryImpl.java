@@ -1,5 +1,7 @@
 package eu.dynamics.technikon.repository.impl;
 
+import java.util.List;
+
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.repository.PropertyRepository;
 import jakarta.persistence.EntityManager;
@@ -22,16 +24,20 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 		return Property.class;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Property readVatNumber(String vatNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Property> readVatNumber(String vatNumber) {
+		System.out.println(this.getEntityClassName());
+		return  super.getEntityManager().createNativeQuery(
+				"SELECT * FROM Property JOIN PropertyOwner ON Property.vatNumber = PropertyOwner.vatNumber WHERE Property.vatNumber = :value")
+				.setParameter("value", vatNumber).getResultList();
 	}
 
 	@Override
 	public Property readPropertyId(String propertyId) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Property) super.getEntityManager()
+				.createNativeQuery("SELECT p FROM Property p Where p.propertyID = :value")
+				.setParameter("value", propertyId).getSingleResult();
 	}
 
 	@Override
@@ -46,43 +52,11 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 		return false;
 	}
 
-//	@Override
-//	public Property readVatNumber(String vatNumber) {
-//		for (Property property : super.read()) {
-//			if (property.getVatNumber().equals(vatNumber))
-//				return property;
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public Property readPropertyId(String propertyId) {
-//		for (Property property : super.read()) {
-//			if (property.getPropertyID().equals(propertyId))
-//				return property;
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public boolean deletePermanently(String propertyId) {
-//		for (Property property : super.read()) {
-//			if (property.getPropertyID().equals(propertyId))
-//				super.read().remove(property);
-//			return true;
-//		}
-//
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean deleteSafely(String propertyId) {
-//		Property property = readPropertyId(propertyId);
-//		if (property == null)
-//			return false;
-//
-//		property.setActive(false);
-//		return true;
-//	}
+	@Override
+	public void updateProperty(Property property) {
+		super.getEntityManager().getTransaction().begin();
+		super.getEntityManager();
+		super.getEntityManager().getTransaction().commit();
+	}
 
 }
