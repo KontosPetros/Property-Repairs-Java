@@ -28,17 +28,6 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 				.setParameter("value", email).getSingleResult();
 	}
 
-	
-
-//	@Override
-//	public boolean deleteSafely(String vatNumber) {
-//		PropertyOwner propertyOwner = readVatNumber(vatNumber);
-//		if (propertyOwner == null)
-//			return false;
-//		
-//		propertyOwner.setActive(false);
-//		return true;
-//	}
 
 	@Override
 	public String getEntityClassName() {

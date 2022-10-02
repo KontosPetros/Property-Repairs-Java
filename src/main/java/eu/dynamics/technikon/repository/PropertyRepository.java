@@ -7,6 +7,9 @@ public interface PropertyRepository extends Repository<Property, Long> {
 	 Property readVatNumber(String vatNumber);
 	 Property readPropertyId(String propertyId);
 	 
+	 
+	 void updateProperty(Property property);
+	 
 	 boolean deletePermanently(String propertyId);
 	 boolean deleteSafely(String propertyId);
 

@@ -62,6 +62,7 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 			
 			propertyOwner.get().setAddress(address);
 			propertyOwner.get().setPassword(password);
+			// nomizw thelei merge oxi persist h na kanoume kapoio create query
 			propertyOwnerRepository.add(propertyOwner.get());
 			
 			return true;

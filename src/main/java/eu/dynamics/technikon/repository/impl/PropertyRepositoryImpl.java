@@ -24,14 +24,15 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 
 	@Override
 	public Property readVatNumber(String vatNumber) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Property) super.getEntityManager().createQuery("SELECT p FROM Property p WHERE p.vatNumber = :value")
+				.setParameter("value", vatNumber).getSingleResult();
 	}
 
 	@Override
 	public Property readPropertyId(String propertyId) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Property) super.getEntityManager()
+				.createQuery("SELECT c FROM PropertyOwner c Where c.propertyID = :value")
+				.setParameter("value", propertyId).getSingleResult();
 	}
 
 	@Override
@@ -46,43 +47,11 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 		return false;
 	}
 
-//	@Override
-//	public Property readVatNumber(String vatNumber) {
-//		for (Property property : super.read()) {
-//			if (property.getVatNumber().equals(vatNumber))
-//				return property;
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public Property readPropertyId(String propertyId) {
-//		for (Property property : super.read()) {
-//			if (property.getPropertyID().equals(propertyId))
-//				return property;
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public boolean deletePermanently(String propertyId) {
-//		for (Property property : super.read()) {
-//			if (property.getPropertyID().equals(propertyId))
-//				super.read().remove(property);
-//			return true;
-//		}
-//
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean deleteSafely(String propertyId) {
-//		Property property = readPropertyId(propertyId);
-//		if (property == null)
-//			return false;
-//
-//		property.setActive(false);
-//		return true;
-//	}
+	@Override
+	public void updateProperty(Property property) {
+		super.getEntityManager().getTransaction().begin();
+		super.getEntityManager();
+		super.getEntityManager().getTransaction().commit();
+	}
 
 }
