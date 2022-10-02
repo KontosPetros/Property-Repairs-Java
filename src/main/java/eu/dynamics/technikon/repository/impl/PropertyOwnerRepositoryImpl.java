@@ -1,7 +1,11 @@
 package eu.dynamics.technikon.repository.impl;
 
+import java.util.Optional;
+
+import eu.dynamics.technikon.exception.PropertyOwnerException;
 import eu.dynamics.technikon.model.PropertyOwner;
 import eu.dynamics.technikon.repository.PropertyOwnerRepository;
+import eu.dynamics.technikon.utility.GeneralUtility;
 import jakarta.persistence.EntityManager;
 
 public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, Long>
@@ -54,6 +58,26 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 	@Override
 	public boolean deleteSafely(String vatNumber) {
 		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password) throws PropertyOwnerException{
+		Optional<PropertyOwner> propertyOwner = super.read(propertyOwnerId);
+		if (propertyOwner.isPresent()) {
+			if (GeneralUtility.isValidEmail(email)){
+				propertyOwner.get().setEmail(email);
+			} else {
+				throw new PropertyOwnerException("the email:" + email + " is not valid");
+			}
+			
+			propertyOwner.get().setAddress(address);
+			propertyOwner.get().setPassword(password);
+			super.add(propertyOwner.get());
+			
+			return true;
+		
+		}
 		return false;
 	}
 

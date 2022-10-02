@@ -51,24 +51,12 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 	}
 
 	@Override
-	public boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password) throws PropertyOwnerException{
-		Optional<PropertyOwner> propertyOwner = propertyOwnerRepository.read(propertyOwnerId);
-		if (propertyOwner.isPresent()) {
-			if (GeneralUtility.isValidEmail(email)){
-				propertyOwner.get().setEmail(email);
-			} else {
-				throw new PropertyOwnerException("the email:" + email + " is not valid");
-			}
-			
-			propertyOwner.get().setAddress(address);
-			propertyOwner.get().setPassword(password);
-			propertyOwnerRepository.add(propertyOwner.get());
-			
-			return true;
-		
-		}
-		return false;
+	public boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)
+			throws PropertyOwnerException {
+		return propertyOwnerRepository.updatePropertyOwner(propertyOwnerId, email, address, password);
 	}
+
+	
 
 	
 
