@@ -1,5 +1,8 @@
 package eu.dynamics.technikon;
 
+import java.util.Optional;
+
+import eu.dynamics.technikon.exception.PropertyException;
 import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
@@ -29,46 +32,103 @@ public class TechnikonMain {
 		System.out.println("---------------------------- PropertyOwner----------------------------");
 		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
-		PropertyOwner propertyOwner = new PropertyOwner();
-		propertyOwner.setVatNumber("421");
-		propertyOwner.setName("kostas");
-		propertyOwner.setAddress("papagou");
-		propertyOwner.setPassword("25648");
-		propertyOwner.setSurname("papadopoulos");
-		propertyOwner.setPhoneNumber("2356665");
-		propertyOwner.setUsername("aou");
-		propertyOwner.setEmail("kostas@mail.com");
+		Optional<PropertyOwner> propertyOwner = propertyOwnerRepository.read(1L);
+//		PropertyOwner propertyOwner = new PropertyOwner();
+//		propertyOwner.setVatNumber("421");
+//		propertyOwner.setName("kostas");
+//		propertyOwner.setAddress("papagou");
+//		propertyOwner.setPassword("25648");
+//		propertyOwner.setSurname("papadopoulos");
+//		propertyOwner.setPhoneNumber("2356665");
+//		propertyOwner.setUsername("aou");
+//		propertyOwner.setEmail("kostas@mail.com");
+		
+//		propertyOwnerService.addPropertyOwner(propertyOwner);
+		
+		propertyOwnerService.updatePropertyOwner(1L);
+		
+		
 
-		propertyOwnerService.addPropertyOwner(propertyOwner);
+		
+		
+    //System.out.println(propertyOwnerService.searchVatNumber("421"));
+	//System.out.println(propertyOwnerService.searchEmail("kostas@mail.com"));
+		
+		
+		
+//		System.out.println("---------------------------- Property----------------------------");
+//		
+//		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
+//		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
+//		Property propertyTest = new Property();
+//		propertyTest.setAddress("volos");
+//		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+//		propertyTest.setPropertyID("12345");
+//		propertyTest.setYearOfConstruction("2019");	
+//		propertyTest.setPropertyOwner(propertyOwner);
+		//propertyService.addProperty(propertyTest);
+//		
+//		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
+//		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
+//		PropertyRepair propertyRepairTest = new PropertyRepair();
+//		propertyRepairTest.setScheduledDate(null);
+//		propertyRepairTest.setDescription("sadsa");
+//		propertyRepairTest.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
+//		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
+//		propertyRepairTest.setCost(null);
+//		propertyRepairTest.setWorkDescription("sadsadas");
+//		propertyRepairTest.setProperty(propertyTest);
+//		propertyRepairTest.setOwnerID(propertyTest.getPropertyOwner().getVatNumber());
+//        propertyRepairService.addPropertyRepair(propertyRepairTest);
+		
+		
 
-		System.out.println("---------------------------- Property----------------------------");
 
-		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
-		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
-		Property propertyTest = new Property();
-		propertyTest.setAddress("volos");
-		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
-		propertyTest.setPropertyID("12345");
-		propertyTest.setYearOfConstruction("2019");
-		propertyTest.setPropertyOwner(propertyOwner);
-		propertyService.addProperty(propertyTest);
+//
+//		PropertyService propertyService = new PropertyServiceImpl(entityManager);
+//		Property propertyTest = new Property();
+//		propertyTest.setAddress("volos");
+//		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+//		propertyTest.setPropertyID("12345");
+//		propertyTest.setYearOfConstruction("2019");
+//		propertyTest.setVatNumber(propertyOwner.getVatNumber());
+//		propertyService.addProperty(propertyTest);
 
-		System.out.println("---------------------------- PropertyRepair----------------------------");
+//		
+		// PropertyOwner test = new PropertyOwner("4198274", "petros", " kontos", "
+		// ioannina", " 123", "email", "pe",
+//				"123");
+//
+//		PropertyOwnerRepository testRepository = new PropertyOwnerRepositoryImpl();
+//		testRepository.add(test);
+//		System.out.println(test.getEmail());
+//		testRepository.updateEmail("4198274", "new Email");
+//		System.out.println(test.getEmail());
+//		System.out.println("before: " + testRepository.read().contains(test));
+//		testRepository.deleteSafely("4198274");
+//		System.out.println("after: " + testRepository.read().contains(test));
+//		
+//
+//		System.out.println("---------------------------- PropertyRepair----------------------------");
+//		PropertyRepair test2 = new PropertyRepair(LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40), "Description",
+//				TypeOfRepair.ELECTRICAL_WORK, StatusOfRepair.COMPLETE, new BigDecimal(100), "123", "561", "JSAFNB");
+//
+//		PropertyRepairRepository test2Repository = new PropertyRepairRepositoryImpl();
+//
+//		test2Repository.add(test2);
+//		System.out.println(test2Repository.readRangeOfDates(LocalDateTime.of(2016, Month.JULY, 29, 19, 30, 40),
+//				LocalDateTime.of(2019, Month.JULY, 29, 19, 30, 40)));
+//
+//		Connection connection = JDBCConnection.getConnection();
+//		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(connection);
+//		propertyOwnerService.createTable();
+//		propertyOwnerService.insertPropertyOwner(
+//				new PropertyOwner("123456", "petros", " kontos", " ioannina", " 123", "email", "pe", "123"));
+//		propertyOwnerService.insertPropertyOwner(
+//				new PropertyOwner("654321", "kwstas", " sadads", " dadasda", " 897", "k@gmail", "ka", "456"));
+//		
 
-		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
-		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
-		PropertyRepair propertyRepairTest = new PropertyRepair();
-		propertyRepairTest.setScheduledDate(null);
-		propertyRepairTest.setDescription("sadsa");
-		propertyRepairTest.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
-		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
-		propertyRepairTest.setCost(null);
-		propertyRepairTest.setWorkDescription("sadsadas");
-		propertyRepairTest.setProperty(propertyTest);
-		propertyRepairTest.setOwnerID(propertyTest.getPropertyOwner().getVatNumber());
-		propertyRepairService.addPropertyRepair(propertyRepairTest);
-
-		System.out.println(propertyOwnerService.searchVatNumber("13"));
+//      System.out.println(propertyOwnerService.findAll());
 	}
 
 }

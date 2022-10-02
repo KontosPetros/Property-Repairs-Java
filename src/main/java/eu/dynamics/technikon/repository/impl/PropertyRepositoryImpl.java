@@ -22,6 +22,30 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 		return Property.class;
 	}
 
+	@Override
+	public Property readVatNumber(String vatNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Property readPropertyId(String propertyId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deletePermanently(String propertyId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteSafely(String propertyId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 //	@Override
 //	public Property readVatNumber(String vatNumber) {
 //		for (Property property : super.read()) {
