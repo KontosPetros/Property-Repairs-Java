@@ -32,6 +32,7 @@ public class TechnikonMain {
 		System.out.println("---------------------------- PropertyOwner----------------------------");
 		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
+		Optional<PropertyOwner> propertyOwner = propertyOwnerRepository.read(1L);
 //		PropertyOwner propertyOwner = new PropertyOwner();
 //		propertyOwner.setVatNumber("421");
 //		propertyOwner.setName("kostas");
@@ -42,8 +43,9 @@ public class TechnikonMain {
 //		propertyOwner.setUsername("aou");
 //		propertyOwner.setEmail("kostas@mail.com");
 		
-		propertyOwnerService.updatePropertyOwner(1L);
+//		propertyOwnerService.addPropertyOwner(propertyOwner);
 		
+		propertyOwnerService.updatePropertyOwner(1L);
 		
 		
 		
