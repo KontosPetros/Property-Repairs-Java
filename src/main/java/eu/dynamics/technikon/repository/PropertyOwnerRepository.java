@@ -9,6 +9,8 @@ public interface PropertyOwnerRepository extends Repository<PropertyOwner, Long>
 
 	PropertyOwner readEmail(String email);
 
-	boolean deleteSafely(String vatNumber);
-	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password) throws PropertyOwnerException;
+	boolean deleteSafely(String vatNumber) throws PropertyOwnerException;
+
+	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)
+			throws PropertyOwnerException;
 }

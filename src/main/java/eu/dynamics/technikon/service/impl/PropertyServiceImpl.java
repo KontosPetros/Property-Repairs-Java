@@ -5,14 +5,14 @@ import java.util.Optional;
 
 import eu.dynamics.technikon.exception.PropertyException;
 import eu.dynamics.technikon.model.Property;
-import eu.dynamics.technikon.repository.Repository;
+import eu.dynamics.technikon.repository.PropertyRepository;
 import eu.dynamics.technikon.service.PropertyService;
 
 public class PropertyServiceImpl implements PropertyService {
 
-	private Repository<Property, Long> propertyRepository;
+	private PropertyRepository propertyRepository;
 
-	public PropertyServiceImpl(Repository<Property, Long> propertyRepository) {
+	public PropertyServiceImpl(PropertyRepository propertyRepository) {
 		this.propertyRepository = propertyRepository;
 	}
 
@@ -28,6 +28,16 @@ public class PropertyServiceImpl implements PropertyService {
 	public List<Property> displayProperty() {
 		return propertyRepository.read(1, 30);
 	}
-	
+
+	@Override
+	public Property searchPropertyId(String propertyId) {
+
+		return propertyRepository.readPropertyId(propertyId);
+	}
+
+	@Override
+	public List<Property> searchVatNumber(String vatNumber) {
+		return propertyRepository.readVatNumber(vatNumber);
+	}
 
 }

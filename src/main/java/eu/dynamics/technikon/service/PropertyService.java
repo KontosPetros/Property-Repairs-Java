@@ -8,5 +8,7 @@ import eu.dynamics.technikon.model.Property;
 public interface PropertyService {
 	void addProperty(Property property) throws PropertyException;
 	List<Property> displayProperty();
+	Property searchPropertyId(String propertyId);
+	List<Property> searchVatNumber(String vatNumber);
 
 }

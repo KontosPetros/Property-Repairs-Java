@@ -17,4 +17,6 @@ public interface PropertyOwnerService {
 
 	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)
 			throws PropertyOwnerException;
+
+	boolean deleteSafely(String vatNumber) throws PropertyOwnerException;
 }

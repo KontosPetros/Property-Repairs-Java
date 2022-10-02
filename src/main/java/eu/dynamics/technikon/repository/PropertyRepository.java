@@ -1,10 +1,12 @@
 package eu.dynamics.technikon.repository;
 
+import java.util.List;
+
 import eu.dynamics.technikon.model.Property;
 
-public interface PropertyRepository extends Repository<Property, Long> {
+public interface PropertyRepository extends Repository<Property, Long>{
 
-	 Property readVatNumber(String vatNumber);
+	 List<Property> readVatNumber(String vatNumber);
 	 Property readPropertyId(String propertyId);
 	 
 	 

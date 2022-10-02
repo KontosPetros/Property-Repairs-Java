@@ -1,5 +1,7 @@
 package eu.dynamics.technikon.repository.impl;
 
+import java.util.List;
+
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.repository.PropertyRepository;
 import jakarta.persistence.EntityManager;
@@ -22,16 +24,19 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 		return Property.class;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Property readVatNumber(String vatNumber) {
-		return (Property) super.getEntityManager().createQuery("SELECT p FROM Property p WHERE p.vatNumber = :value")
-				.setParameter("value", vatNumber).getSingleResult();
+	public List<Property> readVatNumber(String vatNumber) {
+		System.out.println(this.getEntityClassName());
+		return  super.getEntityManager().createNativeQuery(
+				"SELECT * FROM Property JOIN PropertyOwner ON Property.vatNumber = PropertyOwner.vatNumber WHERE Property.vatNumber = :value")
+				.setParameter("value", vatNumber).getResultList();
 	}
 
 	@Override
 	public Property readPropertyId(String propertyId) {
 		return (Property) super.getEntityManager()
-				.createQuery("SELECT c FROM PropertyOwner c Where c.propertyID = :value")
+				.createNativeQuery("SELECT p FROM Property p Where p.propertyID = :value")
 				.setParameter("value", propertyId).getSingleResult();
 	}
 
