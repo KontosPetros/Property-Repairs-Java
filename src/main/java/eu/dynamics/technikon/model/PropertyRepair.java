@@ -123,4 +123,13 @@ public class PropertyRepair {
 		this.isActive = isActive;
 	}
 
+	@Override
+	public String toString() {
+		return "PropertyRepair [id=" + id + ", scheduledDate=" + scheduledDate + ", description=" + description
+				+ ", typeOfRepair=" + typeOfRepair + ", statusOfRepair=" + statusOfRepair + ", cost=" + cost
+				+ ", workDescription=" + workDescription + ", propertyOwner=" + propertyOwner + ", property=" + property
+				+ ", isActive=" + isActive + "]";
+	}
+	
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.annotations.Where;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class Property {
 	private long id;
 
 	@Column(unique = true)
-	private String propertyID;
+	private String propertyId;
 	private String address;
 	private String yearOfConstruction;
 	private TypeOfProperty typeOfProperty;
@@ -64,7 +63,7 @@ public class Property {
 	}
 
 	public String getPropertyID() {
-		return propertyID;
+		return propertyId;
 	}
 
 	public String getAddress() {
@@ -80,7 +79,7 @@ public class Property {
 	}
 
 	public void setPropertyID(String propertyID) {
-		this.propertyID = propertyID;
+		this.propertyId = propertyID;
 	}
 
 	public void setAddress(String address) {
@@ -97,7 +96,7 @@ public class Property {
 
 	@Override
 	public String toString() {
-		return "Property [id=" + id + ", propertyID=" + propertyID + ", address=" + address + ", yearOfConstruction="
+		return "Property [id=" + id + ", propertyID=" + propertyId + ", address=" + address + ", yearOfConstruction="
 				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner=" + propertyOwner
 				+ ", propertyRepairs=" + propertyRepairs + "]";
 	}

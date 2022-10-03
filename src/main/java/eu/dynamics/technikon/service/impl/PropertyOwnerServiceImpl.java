@@ -3,12 +3,10 @@ package eu.dynamics.technikon.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import eu.dynamics.technikon.exception.PropertyException;
 import eu.dynamics.technikon.exception.PropertyOwnerException;
 import eu.dynamics.technikon.model.PropertyOwner;
 import eu.dynamics.technikon.repository.PropertyOwnerRepository;
 import eu.dynamics.technikon.service.PropertyOwnerService;
-import eu.dynamics.technikon.utility.GeneralUtility;
 
 public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 	private PropertyOwnerRepository propertyOwnerRepository;
