@@ -40,4 +40,16 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyRepository.readVatNumber(vatNumber);
 	}
 
+	@Override
+	public boolean deleteSafely(String propertyId) throws PropertyException {
+		return propertyRepository.deleteSafely(propertyId);
+	}
+
+	@Override
+	public boolean deletePermantly(String propertyId) throws PropertyException {
+		return propertyRepository.deletePermantly(propertyId);
+	}
+
+	
+
 }

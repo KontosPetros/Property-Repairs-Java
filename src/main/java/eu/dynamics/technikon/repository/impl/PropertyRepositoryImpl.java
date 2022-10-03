@@ -2,6 +2,7 @@ package eu.dynamics.technikon.repository.impl;
 
 import java.util.List;
 
+import eu.dynamics.technikon.exception.PropertyException;
 import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.repository.PropertyRepository;
 import jakarta.persistence.EntityManager;
@@ -36,20 +37,38 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 	@Override
 	public Property readPropertyId(String propertyId) {
 		return (Property) super.getEntityManager()
-				.createNativeQuery("SELECT p FROM Property p Where p.propertyID = :value")
+				.createQuery("SELECT p FROM Property p Where p.propertyID = :value")
 				.setParameter("value", propertyId).getSingleResult();
 	}
 
 	@Override
-	public boolean deletePermanently(String propertyId) {
-		// TODO Auto-generated method stub
+	public boolean deletePermantly(String propertyId) {
+		Property persistentInstance = readPropertyId(propertyId);
+        if (persistentInstance != null) {
+           try {
+                super.getEntityManager().getTransaction().begin();
+                super.getEntityManager().remove(persistentInstance);
+                super.getEntityManager().getTransaction().commit();
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
+        }
 		return false;
 	}
 
 	@Override
-	public boolean deleteSafely(String propertyId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteSafely(String propertyId) throws PropertyException {
+		
+		Property propertyToDelete = readPropertyId(propertyId);
+		if (propertyToDelete == null) {
+			throw new PropertyException("the property  with propertyId " + propertyId + " does not exists");
+		}
+		super.getEntityManager().getTransaction().begin();
+		propertyToDelete.setIsActive(0);
+		super.getEntityManager().getTransaction().commit();
+
+		return true;
 	}
 
 	@Override

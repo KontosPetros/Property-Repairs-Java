@@ -85,10 +85,16 @@ public class TechnikonMain {
 		propertyTest2.setYearOfConstruction("2019");
 		propertyTest2.setPropertyOwner(propertyOwner);
 		propertyService.addProperty(propertyTest2);
+		
+		//propertyRepository.readPropertyId("34567");
+		
+		System.out.println(propertyService.displayProperty());
+		propertyRepository.deleteSafely("34567");
+		System.out.println(propertyService.displayProperty());
 
 		// System.out.println(propertyService.searchPropertyId("34567"));
 
-		System.out.println(propertyService.searchVatNumber("421"));
+		//System.out.println(propertyService.searchVatNumber("421"));
 
 		System.out.println("---------------------------- Property Repair----------------------------");
 

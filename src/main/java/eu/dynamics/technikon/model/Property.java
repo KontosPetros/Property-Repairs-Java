@@ -2,9 +2,10 @@ package eu.dynamics.technikon.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,12 +14,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@Where(clause = "isActive = 1")
 public class Property {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(unique = true)
 	private String propertyID;
 	private String address;
@@ -26,15 +28,22 @@ public class Property {
 	private TypeOfProperty typeOfProperty;
 
 	@ManyToOne
-    @JoinColumn(
-        name = "vatNumber",
-        referencedColumnName = "vatNumber"
-    )
+	@JoinColumn(name = "vatNumber", referencedColumnName = "vatNumber")
 	private PropertyOwner propertyOwner;
-	
+
 	@OneToMany(mappedBy = "property")
 	private List<PropertyRepair> propertyRepairs;
-	
+
+	private Integer isActive = 1;
+
+	public Integer getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
+	}
+
 	public long getId() {
 		return id;
 	}

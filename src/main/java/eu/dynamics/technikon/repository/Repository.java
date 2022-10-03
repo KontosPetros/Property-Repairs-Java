@@ -10,5 +10,6 @@ public interface Repository<T, K> {
 	List<T> read(int pageNumber, int pageSize);
 
 	Optional<T> read(K tId);
+	
 
 }

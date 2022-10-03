@@ -10,5 +10,6 @@ public interface PropertyService {
 	List<Property> displayProperty();
 	Property searchPropertyId(String propertyId);
 	List<Property> searchVatNumber(String vatNumber);
-
+    boolean deleteSafely (String propertyId) throws PropertyException;
+    boolean deletePermantly (String propertyId) throws PropertyException;
 }
