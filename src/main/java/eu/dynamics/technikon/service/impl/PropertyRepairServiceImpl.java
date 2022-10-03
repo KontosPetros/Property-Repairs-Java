@@ -3,14 +3,16 @@ package eu.dynamics.technikon.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import eu.dynamics.technikon.exception.PropertyRepairException;
 import eu.dynamics.technikon.model.PropertyRepair;
+import eu.dynamics.technikon.repository.PropertyRepairRepository;
 import eu.dynamics.technikon.repository.Repository;
 import eu.dynamics.technikon.service.PropertyRepairService;
 
 public class PropertyRepairServiceImpl implements PropertyRepairService {
-	private Repository<PropertyRepair, Long> propertyRepairRepository;
+	private PropertyRepairRepository propertyRepairRepository;
 
-	public PropertyRepairServiceImpl(Repository<PropertyRepair, Long> propertyRepairRepository) {
+	public PropertyRepairServiceImpl(PropertyRepairRepository propertyRepairRepository) {
 		this.propertyRepairRepository = propertyRepairRepository;
 	}
 
@@ -27,6 +29,13 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 	public List<PropertyRepair> displayPropertyRepair() {
 
 		return propertyRepairRepository.read(1, 20);
+	}
+
+	@Override
+	public boolean deleteSafely(Long id) throws PropertyRepairException {
+		return propertyRepairRepository.deleteSafely(id);
+		
+		
 	}
 
 }

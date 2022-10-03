@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.Where;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 @Where(clause = "isActive = 1")
+
 public class Property {
 
 	@Id
@@ -32,6 +34,7 @@ public class Property {
 	private PropertyOwner propertyOwner;
 
 	@OneToMany(mappedBy = "property")
+	
 	private List<PropertyRepair> propertyRepairs;
 
 	private Integer isActive = 1;

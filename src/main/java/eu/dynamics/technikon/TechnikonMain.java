@@ -87,10 +87,12 @@ public class TechnikonMain {
 		propertyService.addProperty(propertyTest2);
 		
 		//propertyRepository.readPropertyId("34567");
+	
 		
-		System.out.println(propertyService.displayProperty());
-		propertyRepository.deleteSafely("34567");
-		System.out.println(propertyService.displayProperty());
+	     System.out.println(propertyService.displayProperty());
+	   	 propertyService.deletePermantly("34567");
+	     System.out.println(propertyService.displayProperty());
+		
 
 		// System.out.println(propertyService.searchPropertyId("34567"));
 
@@ -122,9 +124,18 @@ public class TechnikonMain {
 		propertyRepairTest2.setProperty(propertyTest);
 		propertyRepairTest2.setOwner(propertyTest.getPropertyOwner());
 		propertyRepairService.addPropertyRepair(propertyRepairTest2);
+		
+//		System.out.println(propertyRepairService.displayPropertyRepair());
+//		System.out.println(propertyService.displayProperty());
+//		propertyRepository.deletePermantly("34567");
+//		System.out.println(propertyService.displayProperty());
+//		System.out.println(propertyRepairService.displayPropertyRepair());
+//		
 
 		JpaUtil.shutdown();
 
 	}
+	
+	
 
 }
