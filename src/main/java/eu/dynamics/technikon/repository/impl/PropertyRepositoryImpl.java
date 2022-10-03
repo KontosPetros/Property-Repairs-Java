@@ -24,13 +24,13 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 		return Property.class;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Property> readVatNumber(String vatNumber) {
-		System.out.println(this.getEntityClassName());
-		return  super.getEntityManager().createNativeQuery(
-				"SELECT * FROM Property JOIN PropertyOwner ON Property.vatNumber = PropertyOwner.vatNumber WHERE Property.vatNumber = :value")
+		return super.getEntityManager()
+				.createQuery("SELECT p FROM Property p JOIN p.propertyOwner WHERE p.propertyOwner.vatNumber = :value",
+						getEntityClass())
 				.setParameter("value", vatNumber).getResultList();
+
 	}
 
 	@Override
