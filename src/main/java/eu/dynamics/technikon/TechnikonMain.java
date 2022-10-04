@@ -42,7 +42,7 @@ public class TechnikonMain {
 		propertyOwner.setPhoneNumber("2356665");
 		propertyOwner.setUsername("aou");
 		propertyOwner.setEmail("kostas@mail.com");
-		//propertyOwnerService.addPropertyOwner(propertyOwner);
+		propertyOwnerService.addPropertyOwner(propertyOwner);
 
 		PropertyOwner propertyOwner2 = new PropertyOwner();
 		propertyOwner2.setVatNumber("456");
@@ -53,9 +53,9 @@ public class TechnikonMain {
 		propertyOwner2.setPhoneNumber("2356665");
 		propertyOwner2.setUsername("aou");
 		propertyOwner2.setEmail("1s@mail.com");
-		//propertyOwnerService.addPropertyOwner(propertyOwner2);
+		propertyOwnerService.addPropertyOwner(propertyOwner2);
 
-//		System.out.println(propertyOwnerService.searchEmail("kostas@mail.com"));
+       System.out.println(propertyOwnerService.searchEmail("kostas@mail.com"));
 //		System.out.println(propertyOwnerService.searchVatNumber("456"));
 //		propertyOwnerService.updatePropertyOwner(3L, "kostas@mail.com", "dodonis", "29292");
 //		System.out.println("property owner table BEFORE safely deletion");
@@ -72,26 +72,22 @@ public class TechnikonMain {
 		Property propertyTest = new Property();
 		propertyTest.setAddress("larisa");
 		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
-		propertyTest.setPropertyID("23456");
+		propertyTest.setPropertyId("23456");
 		propertyTest.setYearOfConstruction("2019");
 		propertyTest.setPropertyOwner(propertyOwner);
-		//propertyService.addProperty(propertyTest);
+		propertyService.addProperty(propertyTest);
 
 		Property propertyTest2 = new Property();
 
 		propertyTest2.setAddress("volos");
 		propertyTest2.setTypeOfProperty(TypeOfProperty.APARTMENT);
-		propertyTest2.setPropertyID("34567");
+		propertyTest2.setPropertyId("34567");
 		propertyTest2.setYearOfConstruction("2019");
 		propertyTest2.setPropertyOwner(propertyOwner);
-		//propertyService.addProperty(propertyTest2);
-		
+		propertyService.addProperty(propertyTest2);
 
-		
-		
-		propertyRepository.updateProperty("34567","address","lar");
-		
-		
+		System.out.println( propertyService.searchPropertyId("23456"));
+		// propertyRepository.updateProperty("34567","address","lar");
 
 		// propertyRepository.readPropertyId("34567");
 
@@ -117,7 +113,7 @@ public class TechnikonMain {
 		propertyRepairTest.setWorkDescription("sadsadas");
 		propertyRepairTest.setProperty(propertyTest);
 		propertyRepairTest.setOwner(propertyTest.getPropertyOwner());
-		//propertyRepairService.addPropertyRepair(propertyRepairTest);
+		// propertyRepairService.addPropertyRepair(propertyRepairTest);
 
 		PropertyRepair propertyRepairTest2 = new PropertyRepair();
 		propertyRepairTest2.setScheduledDate(null);
@@ -128,9 +124,7 @@ public class TechnikonMain {
 		propertyRepairTest2.setWorkDescription("sadsadas");
 		propertyRepairTest2.setProperty(propertyTest);
 		propertyRepairTest2.setOwner(propertyTest.getPropertyOwner());
-		//propertyRepairService.addPropertyRepair(propertyRepairTest2);
-
-
+		// propertyRepairService.addPropertyRepair(propertyRepairTest2);
 
 //		System.out.println(propertyRepairService.displayPropertyRepair());
 //		System.out.println(propertyService.displayProperty());

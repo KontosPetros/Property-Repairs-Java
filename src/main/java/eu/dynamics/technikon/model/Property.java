@@ -62,7 +62,7 @@ public class Property {
 		this.propertyOwner = propertyOwner;
 	}
 
-	public String getPropertyID() {
+	public String getPropertyId() {
 		return propertyId;
 	}
 
@@ -78,8 +78,8 @@ public class Property {
 		return typeOfProperty;
 	}
 
-	public void setPropertyID(String propertyID) {
-		this.propertyId = propertyID;
+	public void setPropertyId(String propertyId) {
+		this.propertyId = propertyId;
 	}
 
 	public void setAddress(String address) {
@@ -96,7 +96,7 @@ public class Property {
 
 	@Override
 	public String toString() {
-		return "Property [id=" + id + ", propertyID=" + propertyId + ", address=" + address + ", yearOfConstruction="
+		return "Property [id=" + id + ", propertyId=" + propertyId + ", address=" + address + ", yearOfConstruction="
 				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner=" + propertyOwner
 				+ ", propertyRepairs=" + propertyRepairs + "]";
 	}

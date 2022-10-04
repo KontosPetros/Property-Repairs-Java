@@ -31,10 +31,10 @@ public class GeneralUtility {
 
 		return true;
 	}
-     public static boolean isValidProperty (String propertyID, List<Property> list) {
-    	 if(propertyID == null) return false;
+     public static boolean isValidProperty (String propertyId, List<Property> list) {
+    	 if(propertyId == null) return false;
     	 for (Property property : list) {
-    		 if(property.getPropertyID().equals(propertyID)) {
+    		 if(property.getPropertyId().equals(propertyId)) {
     			 return false;
     		 }
     	 }

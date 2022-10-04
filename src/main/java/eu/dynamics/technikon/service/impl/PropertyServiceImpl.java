@@ -29,10 +29,16 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyRepository.read(1, 30);
 	}
 
+	
 	@Override
-	public Property searchPropertyId(String propertyId) {
-
-		return propertyRepository.readPropertyId(propertyId);
+	public Property searchPropertyId(String propertyId) throws PropertyException {
+		Property searchPropertyIdResult = propertyRepository.readPropertyId(propertyId);
+		   if (searchPropertyIdResult == null) {
+			   throw new PropertyException("The property with propertyId: " + propertyId + " does not exist");
+		   }
+		   return searchPropertyIdResult;
+          
+		
 	}
 
 	@Override
