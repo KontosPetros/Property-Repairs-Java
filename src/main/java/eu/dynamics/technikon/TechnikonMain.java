@@ -1,6 +1,7 @@
 package eu.dynamics.technikon;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.model.Property;
@@ -105,7 +106,7 @@ public class TechnikonMain {
 		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
 
 		PropertyRepair propertyRepairTest = new PropertyRepair();
-		propertyRepairTest.setScheduledDate(null);
+		propertyRepairTest.setScheduledDate(LocalDateTime.of(2019, 9, 9, 9, 9));
 		propertyRepairTest.setDescription("repair");
 		propertyRepairTest.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
 		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
@@ -113,10 +114,10 @@ public class TechnikonMain {
 		propertyRepairTest.setWorkDescription("sadsadas");
 		propertyRepairTest.setProperty(propertyTest);
 		propertyRepairTest.setOwner(propertyTest.getPropertyOwner());
-		// propertyRepairService.addPropertyRepair(propertyRepairTest);
+		propertyRepairService.addPropertyRepair(propertyRepairTest);
 
 		PropertyRepair propertyRepairTest2 = new PropertyRepair();
-		propertyRepairTest2.setScheduledDate(null);
+		propertyRepairTest2.setScheduledDate(LocalDateTime.of(2020, 9, 9, 9, 9));
 		propertyRepairTest2.setDescription("2o repair");
 		propertyRepairTest2.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
 		propertyRepairTest2.setStatusOfRepair(StatusOfRepair.COMPLETE);
@@ -124,8 +125,13 @@ public class TechnikonMain {
 		propertyRepairTest2.setWorkDescription("sadsadas");
 		propertyRepairTest2.setProperty(propertyTest);
 		propertyRepairTest2.setOwner(propertyTest.getPropertyOwner());
-		// propertyRepairService.addPropertyRepair(propertyRepairTest2);
-
+		propertyRepairService.addPropertyRepair(propertyRepairTest2);
+		
+		
+		
+		//System.out.println(propertyRepairRepository.readDate(LocalDateTime.of(2019, 9, 9, 9, 9)));
+		//System.out.println(propertyRepairRepository.readRangeOfDates(LocalDateTime.of(2020, 10, 9, 9, 9), LocalDateTime.of(2021, 9, 9, 9, 9)));
+		
 //		System.out.println(propertyRepairService.displayPropertyRepair());
 //		System.out.println(propertyService.displayProperty());
 //		propertyRepository.deletePermantly("34567");

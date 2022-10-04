@@ -37,7 +37,7 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 
 	@Override
 	public Property readPropertyId(String propertyId) {
-		return (Property) super.getEntityManager().createQuery("SELECT p FROM Property p Where p.propertyId = :value")
+		return (Property) super.getEntityManager().createQuery("SELECT p FROM Property p WHERE p.propertyId = :value")
 				.setParameter("value", propertyId).getSingleResult();
 	}
 
