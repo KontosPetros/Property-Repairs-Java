@@ -7,6 +7,7 @@ import eu.dynamics.technikon.exception.PropertyRepairException;
 import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair, Long>
 		implements PropertyRepairRepository {
@@ -60,6 +61,18 @@ public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair,
 
 		return true;
 
+	}
+
+	@Override
+	public void updatePropertyRepair(Long id, String columnName, String newValue) {
+		super.getEntityManager().getTransaction().begin();
+		Query query = super.getEntityManager()
+				.createQuery("UPDATE PropertyRepair p SET p." + columnName + " = :newValue WHERE p.id = :id")
+				.setParameter("newValue", newValue)
+				.setParameter("id", id);
+		query.executeUpdate();
+		super.getEntityManager().getTransaction().commit();
+		
 	}
 
 }

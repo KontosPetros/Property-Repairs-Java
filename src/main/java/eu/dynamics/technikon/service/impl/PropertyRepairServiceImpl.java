@@ -1,5 +1,6 @@
 package eu.dynamics.technikon.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import eu.dynamics.technikon.exception.PropertyRepairException;
 import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
 import eu.dynamics.technikon.service.PropertyRepairService;
+import jakarta.persistence.Query;
 
 public class PropertyRepairServiceImpl implements PropertyRepairService {
 	private PropertyRepairRepository propertyRepairRepository;
@@ -35,6 +37,30 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 		return propertyRepairRepository.deleteSafely(id);
 		
 		
+	}
+
+	@Override
+	public List<PropertyRepair> searchDate(LocalDateTime date) throws PropertyRepairException {
+		List<PropertyRepair> propertyRepairSearch = propertyRepairRepository.readDate(date);
+		if(propertyRepairSearch.isEmpty()) {
+		throw new PropertyRepairException("No Repair  this Date");
+		}
+		return propertyRepairSearch;
+	}
+
+	@Override
+	public List<PropertyRepair> searchRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil) throws PropertyRepairException {
+		List<PropertyRepair> propertyRepairSearch = propertyRepairRepository.readRangeOfDates(dateFrom, dateUntil);
+		if(propertyRepairSearch.isEmpty()) {
+			throw new PropertyRepairException("No repair in this rangeOfDates");
+		}
+		return propertyRepairSearch;
+	}
+
+	@Override
+	public void updatePropertyRepair(Long id, String columnName, String newValue) {
+		propertyRepairRepository.updatePropertyRepair(id, columnName, newValue);
+				
 	}
 
 }

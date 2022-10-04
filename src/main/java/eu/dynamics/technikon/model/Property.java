@@ -97,8 +97,8 @@ public class Property {
 	@Override
 	public String toString() {
 		return "Property [id=" + id + ", propertyId=" + propertyId + ", address=" + address + ", yearOfConstruction="
-				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner=" + propertyOwner
-				+ ", propertyRepairs=" + propertyRepairs + "]";
+				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner vatNumber=" + propertyOwner.getVatNumber()
+				+ "]";
 	}
 
 }
