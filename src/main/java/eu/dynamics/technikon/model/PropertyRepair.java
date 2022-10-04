@@ -3,10 +3,7 @@ package eu.dynamics.technikon.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Where;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -28,19 +25,15 @@ public class PropertyRepair {
 	private StatusOfRepair statusOfRepair;
 	private BigDecimal cost;
 	private String workDescription;
-	
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(
-            name = "vatNumber",
-            referencedColumnName = "vatNumber"
-        )
+	@JoinColumn(name = "vatNumber", referencedColumnName = "vatNumber")
 	private PropertyOwner propertyOwner;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "propertyID", referencedColumnName = "propertyID")
 	private Property property;
-	
+
 	private Integer isActive = 1;
 
 	public long getId() {
@@ -130,6 +123,5 @@ public class PropertyRepair {
 				+ ", workDescription=" + workDescription + ", propertyOwner=" + propertyOwner + ", property=" + property
 				+ ", isActive=" + isActive + "]";
 	}
-	
 
 }

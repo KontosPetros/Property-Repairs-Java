@@ -42,19 +42,42 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public List<Property> searchVatNumber(String vatNumber) {
-		return propertyRepository.readVatNumber(vatNumber);
+	public List<Property> searchVatNumber(String vatNumber) throws PropertyException {
+		List<Property> searchVatNumberResult = propertyRepository.readVatNumber(vatNumber);
+		if (searchVatNumberResult == null) {
+			throw new PropertyException("No properties for" + vatNumber + "exists");
+		}
+		return searchVatNumberResult;
 	}
 
 	@Override
 	public boolean deleteSafely(String propertyId) throws PropertyException {
-		return propertyRepository.deleteSafely(propertyId);
+		boolean deleteSafelyResult = propertyRepository.deleteSafely(propertyId);
+		  if (deleteSafelyResult == false) {
+			  throw new PropertyException("Property has not safely deleted");
+		  }
+		return deleteSafelyResult;
 	}
 
 	@Override
 	public boolean deletePermantly(String propertyId) throws PropertyException {
-		return propertyRepository.deletePermantly(propertyId);
+		boolean deletePermantlyResult = propertyRepository.deletePermantly(propertyId);
+		if (deletePermantlyResult == false) {
+			throw new PropertyException("Property has not permantly deleted");
+		}
+		return deletePermantlyResult;
 	}
+
+	@Override
+	public void updateProperty(String propertyId, String columnName, String newValue)  {
+		propertyRepository.updateProperty(propertyId, columnName, newValue);
+		
+		}
+	
+				
+		
+		
+	
 
 	
 

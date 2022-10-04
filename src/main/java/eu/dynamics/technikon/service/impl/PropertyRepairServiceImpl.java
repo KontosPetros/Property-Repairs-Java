@@ -6,7 +6,6 @@ import java.util.Optional;
 import eu.dynamics.technikon.exception.PropertyRepairException;
 import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
-import eu.dynamics.technikon.repository.Repository;
 import eu.dynamics.technikon.service.PropertyRepairService;
 
 public class PropertyRepairServiceImpl implements PropertyRepairService {

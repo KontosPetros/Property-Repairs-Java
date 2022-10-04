@@ -80,7 +80,7 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 				.setParameter("newValue", newValue).setParameter("propertyId", propertyId);
 		query.executeUpdate();
 		super.getEntityManager().getTransaction().commit();
-		// "UPDATE User u SET u.balance = :balance WHERE u.id = :userId"
+		
 
 	}
 

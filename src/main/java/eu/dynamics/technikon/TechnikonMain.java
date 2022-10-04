@@ -97,7 +97,7 @@ public class TechnikonMain {
 
 		// System.out.println(propertyService.searchPropertyId("34567"));
 
-		// System.out.println(propertyService.searchVatNumber("421"));
+		System.out.println(propertyService.searchVatNumber("421"));
 
 		System.out.println("---------------------------- Property Repair----------------------------");
 
