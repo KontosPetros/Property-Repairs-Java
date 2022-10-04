@@ -63,4 +63,13 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 				
 	}
 
+	@Override
+	public List<PropertyRepair> searchVatNumber(String vatNumber) throws PropertyRepairException {
+		List<PropertyRepair> propertyRepairSearch = propertyRepairRepository.readVatNumber(vatNumber);
+		if(propertyRepairSearch.isEmpty()) {
+			throw new  PropertyRepairException("There are no repairs for this vatNumber");
+		}
+		return propertyRepairSearch;
+	}
+
 }

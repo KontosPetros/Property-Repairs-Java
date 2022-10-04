@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import eu.dynamics.technikon.exception.PropertyRepairException;
+import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyRepair;
 
 public interface PropertyRepairService {
@@ -13,6 +14,7 @@ public interface PropertyRepairService {
 	List<PropertyRepair> searchRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil) throws PropertyRepairException;
 
 	List<PropertyRepair> displayPropertyRepair();
+	List<PropertyRepair> searchVatNumber(String vatNumber) throws PropertyRepairException;
 	boolean deleteSafely(Long id) throws PropertyRepairException;
 	public void updatePropertyRepair(Long id,String columnName, String newValue);
 	

@@ -75,4 +75,16 @@ public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair,
 		
 	}
 
+	@Override
+	public List<PropertyRepair> readVatNumber(String vatNumber) {
+		return super.getEntityManager()
+				.createQuery("SELECT p FROM PropertyRepair p JOIN p.propertyOwner WHERE p.propertyOwner.vatNumber = :value",
+						getEntityClass())
+				.setParameter("value", vatNumber).getResultList();
+
+		
+		
+		
+	}
+
 }

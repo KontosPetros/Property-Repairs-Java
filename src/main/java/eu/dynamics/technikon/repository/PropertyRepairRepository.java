@@ -10,6 +10,7 @@ public interface PropertyRepairRepository extends Repository<PropertyRepair, Lon
 
 	List<PropertyRepair> readDate(LocalDateTime date);
 	List<PropertyRepair> readRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil);
+	List<PropertyRepair> readVatNumber(String vatNumber);
 
 	boolean deleteSafely(Long id) throws PropertyRepairException;
 	void updatePropertyRepair(Long id,String columnName, String newValue);

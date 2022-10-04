@@ -132,10 +132,11 @@ public class TechnikonMain {
 		//System.out.println(propertyRepairRepository.readDate(LocalDateTime.of(2019, 9, 9, 9, 9)));
 		//System.out.println(propertyRepairService.searchDate(LocalDateTime.of(2010, 2, 3, 1, 1)));
 		
-		System.out.println(propertyRepairService.displayPropertyRepair());
-		propertyRepairService.updatePropertyRepair(1L,"workDescription","dfhgfgfg");
-		entityManager.refresh(propertyRepairTest);
-		System.out.println(propertyRepairService.displayPropertyRepair());
+//		System.out.println(propertyRepairService.displayPropertyRepair());
+//		propertyRepairService.updatePropertyRepair(1L,"workDescription","dfhgfgfg");
+//		entityManager.refresh(propertyRepairTest);
+//		System.out.println(propertyRepairService.displayPropertyRepair());
+		System.out.println(propertyRepairService.searchVatNumber("46461"));
 		
 		
 		//System.out.println(propertyRepairRepository.readRangeOfDates(LocalDateTime.of(2020, 10, 9, 9, 9), LocalDateTime.of(2021, 9, 9, 9, 9)));
