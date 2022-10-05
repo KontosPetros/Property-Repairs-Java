@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.hibernate.annotations.Where;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,13 +30,14 @@ public class Property {
 	private String yearOfConstruction;
 	private TypeOfProperty typeOfProperty;
 
-	@ManyToOne
-	@JoinColumn(name = "vatNumber", referencedColumnName = "vatNumber")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ownerId")
 	private PropertyOwner propertyOwner;
 
-	@OneToMany(mappedBy = "property")
-	
+	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PropertyRepair> propertyRepairs;
+	
+	
 
 	private Integer isActive = 1;
 
@@ -97,8 +100,8 @@ public class Property {
 	@Override
 	public String toString() {
 		return "Property [id=" + id + ", propertyId=" + propertyId + ", address=" + address + ", yearOfConstruction="
-				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner vatNumber=" + propertyOwner.getVatNumber()
-				+ "]";
+				+ yearOfConstruction + ", typeOfProperty=" + typeOfProperty + ", propertyOwner vatNumber="
+				+ propertyOwner.getVatNumber() + "]";
 	}
 
 }

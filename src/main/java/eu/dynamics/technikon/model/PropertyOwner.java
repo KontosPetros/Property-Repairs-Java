@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.Where;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class PropertyOwner {
 	private String username;
 	private String password;
 
-	@OneToMany(mappedBy = "propertyOwner")
+	@OneToMany(mappedBy = "propertyOwner", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Property> properties;
 
 	private Integer isActive = 1;

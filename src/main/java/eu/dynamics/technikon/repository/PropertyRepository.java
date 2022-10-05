@@ -13,7 +13,7 @@ public interface PropertyRepository extends Repository<Property, Long> {
 
 	void updateProperty(String propertyId,String columnName, String newValue);
 
-	boolean deletePermantly(String propertyId);
+	boolean deletePermantly(Long propertyId) throws PropertyException;
 
 	boolean deleteSafely(String propertyId) throws PropertyException;
 

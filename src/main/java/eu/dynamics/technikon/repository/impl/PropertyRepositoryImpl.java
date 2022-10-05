@@ -42,10 +42,12 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 	}
 
 	@Override
-	public boolean deletePermantly(String propertyId) {
-		Property persistentInstance = readPropertyId(propertyId);
+	public boolean deletePermantly(Long propertyId) throws PropertyException {
+		Property persistentInstance = super.getEntityManager().find(getEntityClass(), propertyId);
 		if (persistentInstance != null) {
+			
 			try {
+	
 				super.getEntityManager().getTransaction().begin();
 				super.getEntityManager().remove(persistentInstance);
 				super.getEntityManager().getTransaction().commit();
@@ -55,6 +57,7 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 			return true;
 		}
 		return false;
+
 	}
 
 	@Override
@@ -72,15 +75,14 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 	}
 
 	@Override
-	public void updateProperty(String propertyId,String columnName, String newValue) {
-		
+	public void updateProperty(String propertyId, String columnName, String newValue) {
+
 		super.getEntityManager().getTransaction().begin();
 		Query query = super.getEntityManager()
 				.createQuery("UPDATE Property p SET p." + columnName + " = :newValue WHERE p.propertyId = :propertyId")
 				.setParameter("newValue", newValue).setParameter("propertyId", propertyId);
 		query.executeUpdate();
 		super.getEntityManager().getTransaction().commit();
-		
 
 	}
 

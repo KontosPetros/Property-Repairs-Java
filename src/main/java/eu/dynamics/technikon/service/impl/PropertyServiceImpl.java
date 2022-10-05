@@ -29,16 +29,14 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyRepository.read(1, 30);
 	}
 
-	
 	@Override
 	public Property searchPropertyId(String propertyId) throws PropertyException {
 		Property searchPropertyIdResult = propertyRepository.readPropertyId(propertyId);
-		   if (searchPropertyIdResult == null) {
-			   throw new PropertyException("The property with propertyId: " + propertyId + " does not exist");
-		   }
-		   return searchPropertyIdResult;
-          
-		
+		if (searchPropertyIdResult == null) {
+			throw new PropertyException("The property with propertyId: " + propertyId + " does not exist");
+		}
+		return searchPropertyIdResult;
+
 	}
 
 	@Override
@@ -53,14 +51,14 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	public boolean deleteSafely(String propertyId) throws PropertyException {
 		boolean deleteSafelyResult = propertyRepository.deleteSafely(propertyId);
-		  if (deleteSafelyResult == false) {
-			  throw new PropertyException("Property has not safely deleted");
-		  }
+		if (deleteSafelyResult == false) {
+			throw new PropertyException("Property has not safely deleted");
+		}
 		return deleteSafelyResult;
 	}
 
 	@Override
-	public boolean deletePermantly(String propertyId) throws PropertyException {
+	public boolean deletePermantly(Long propertyId) throws PropertyException {
 		boolean deletePermantlyResult = propertyRepository.deletePermantly(propertyId);
 		if (deletePermantlyResult == false) {
 			throw new PropertyException("Property has not permantly deleted");
@@ -69,16 +67,9 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public void updateProperty(String propertyId, String columnName, String newValue)  {
+	public void updateProperty(String propertyId, String columnName, String newValue) {
 		propertyRepository.updateProperty(propertyId, columnName, newValue);
-		
-		}
-	
-				
-		
-		
-	
 
-	
+	}
 
 }

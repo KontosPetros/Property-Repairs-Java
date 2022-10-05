@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.Where;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,16 +24,19 @@ public class PropertyRepair {
 	private LocalDateTime scheduledDate;
 	private String description;
 	private TypeOfRepair typeOfRepair;
+	
+	@Enumerated(EnumType.STRING)
 	private StatusOfRepair statusOfRepair;
+	
 	private BigDecimal cost;
 	private String workDescription;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "vatNumber", referencedColumnName = "vatNumber")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ownerId")
 	private PropertyOwner propertyOwner;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "propertyID", referencedColumnName = "propertyID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "propertyId")
 	private Property property;
 
 	private Integer isActive = 1;
