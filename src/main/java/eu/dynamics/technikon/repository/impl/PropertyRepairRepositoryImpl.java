@@ -7,7 +7,6 @@ import eu.dynamics.technikon.exception.PropertyRepairException;
 import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 
 public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair, Long>
 		implements PropertyRepairRepository {
@@ -33,8 +32,7 @@ public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair,
 	public List<PropertyRepair> readDate(LocalDateTime date) {
 		List<PropertyRepair> resultList = super.getEntityManager()
 				.createQuery("SELECT pr FROM PropertyRepair pr WHERE pr.scheduledDate= :date")
-				.setParameter("date", date)
-				.getResultList();
+				.setParameter("date", date).getResultList();
 		return resultList;
 	}
 
@@ -43,9 +41,7 @@ public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair,
 	public List<PropertyRepair> readRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil) {
 		List<PropertyRepair> resultList = super.getEntityManager()
 				.createQuery("SELECT pr FROM PropertyRepair pr WHERE pr.scheduledDate BETWEEN :dateFrom and :dateUntil")
-				.setParameter("dateFrom", dateFrom)
-				.setParameter("dateUntil", dateUntil)
-				.getResultList();
+				.setParameter("dateFrom", dateFrom).setParameter("dateUntil", dateUntil).getResultList();
 		return resultList;
 	}
 
@@ -64,27 +60,29 @@ public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair,
 	}
 
 	@Override
-	public void updatePropertyRepair(Long id, String columnName, String newValue) {
-		super.getEntityManager().getTransaction().begin();
-		Query query = super.getEntityManager()
-				.createQuery("UPDATE PropertyRepair p SET p." + columnName + " = :newValue WHERE p.id = :id")
-				.setParameter("newValue", newValue)
-				.setParameter("id", id);
-		query.executeUpdate();
-		super.getEntityManager().getTransaction().commit();
-		
+	public boolean updatePropertyRepair(PropertyRepair propertyRepair) {
+		PropertyRepair persistentInstance = super.getEntityManager().find(getEntityClass(), propertyRepair.getId());
+		if (persistentInstance != null) {
+
+			try {
+
+				super.getEntityManager().getTransaction().begin();
+				super.getEntityManager().merge(persistentInstance);
+				super.getEntityManager().getTransaction().commit();
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public List<PropertyRepair> readVatNumber(String vatNumber) {
-		return super.getEntityManager()
-				.createQuery("SELECT p FROM PropertyRepair p JOIN p.propertyOwner WHERE p.propertyOwner.vatNumber = :value",
-						getEntityClass())
-				.setParameter("value", vatNumber).getResultList();
+		return super.getEntityManager().createQuery(
+				"SELECT p FROM PropertyRepair p JOIN p.propertyOwner WHERE p.propertyOwner.vatNumber = :value",
+				getEntityClass()).setParameter("value", vatNumber).getResultList();
 
-		
-		
-		
 	}
 
 }

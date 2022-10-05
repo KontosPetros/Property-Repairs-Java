@@ -14,7 +14,7 @@ public interface PropertyService {
 
 	List<Property> searchVatNumber(String vatNumber) throws PropertyException;
 
-	void updateProperty(String propertyId, String columnName, String newValue) throws PropertyException;
+	boolean updateProperty(Property property) throws PropertyException;
 
 	boolean deleteSafely(String propertyId) throws PropertyException;
 

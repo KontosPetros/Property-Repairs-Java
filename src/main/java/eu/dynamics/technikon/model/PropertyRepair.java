@@ -23,6 +23,7 @@ public class PropertyRepair {
 	private long id;
 	private LocalDateTime scheduledDate;
 	private String description;
+	@Enumerated(EnumType.STRING)
 	private TypeOfRepair typeOfRepair;
 	
 	@Enumerated(EnumType.STRING)

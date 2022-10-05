@@ -7,6 +7,8 @@ import org.hibernate.annotations.Where;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Property {
 	private String propertyId;
 	private String address;
 	private String yearOfConstruction;
+	@Enumerated(EnumType.STRING)
 	private TypeOfProperty typeOfProperty;
 
 	@ManyToOne(fetch = FetchType.LAZY)

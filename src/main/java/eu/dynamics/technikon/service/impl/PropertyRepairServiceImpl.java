@@ -8,7 +8,6 @@ import eu.dynamics.technikon.exception.PropertyRepairException;
 import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
 import eu.dynamics.technikon.service.PropertyRepairService;
-import jakarta.persistence.Query;
 
 public class PropertyRepairServiceImpl implements PropertyRepairService {
 	private PropertyRepairRepository propertyRepairRepository;
@@ -35,41 +34,54 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 	@Override
 	public boolean deleteSafely(Long id) throws PropertyRepairException {
 		return propertyRepairRepository.deleteSafely(id);
-		
-		
+
 	}
 
 	@Override
 	public List<PropertyRepair> searchDate(LocalDateTime date) throws PropertyRepairException {
 		List<PropertyRepair> propertyRepairSearch = propertyRepairRepository.readDate(date);
-		if(propertyRepairSearch.isEmpty()) {
-		throw new PropertyRepairException("No Repair  this Date");
+		if (propertyRepairSearch.isEmpty()) {
+			throw new PropertyRepairException("No Repair  this Date");
 		}
 		return propertyRepairSearch;
 	}
 
 	@Override
-	public List<PropertyRepair> searchRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil) throws PropertyRepairException {
+	public List<PropertyRepair> searchRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil)
+			throws PropertyRepairException {
 		List<PropertyRepair> propertyRepairSearch = propertyRepairRepository.readRangeOfDates(dateFrom, dateUntil);
-		if(propertyRepairSearch.isEmpty()) {
+		if (propertyRepairSearch.isEmpty()) {
 			throw new PropertyRepairException("No repair in this rangeOfDates");
 		}
 		return propertyRepairSearch;
 	}
 
 	@Override
-	public void updatePropertyRepair(Long id, String columnName, String newValue) {
-		propertyRepairRepository.updatePropertyRepair(id, columnName, newValue);
-				
+	public boolean updatePropertyRepair(PropertyRepair propertyRepair) throws PropertyRepairException {
+		boolean updatePropertyRepairResult = propertyRepairRepository.updatePropertyRepair(propertyRepair);
+		if (updatePropertyRepairResult == false) {
+			throw new PropertyRepairException("PropertyRepair has not updated");
+		}
+		return updatePropertyRepairResult;
+
 	}
 
 	@Override
 	public List<PropertyRepair> searchVatNumber(String vatNumber) throws PropertyRepairException {
 		List<PropertyRepair> propertyRepairSearch = propertyRepairRepository.readVatNumber(vatNumber);
-		if(propertyRepairSearch.isEmpty()) {
-			throw new  PropertyRepairException("There are no repairs for this vatNumber");
+		if (propertyRepairSearch.isEmpty()) {
+			throw new PropertyRepairException("There are no repairs for this vatNumber");
 		}
 		return propertyRepairSearch;
+	}
+
+	@Override
+	public PropertyRepair searchPropertyRepairId(Long id) throws PropertyRepairException {
+		Optional<PropertyRepair> searchPropertyRepairId = propertyRepairRepository.read(id);
+		if (searchPropertyRepairId.isEmpty()) {
+			throw new PropertyRepairException("The propertyRepair does not exist");
+		}
+		return searchPropertyRepairId.get();
 	}
 
 }

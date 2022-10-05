@@ -13,6 +13,6 @@ public interface PropertyRepairRepository extends Repository<PropertyRepair, Lon
 	List<PropertyRepair> readVatNumber(String vatNumber);
 
 	boolean deleteSafely(Long id) throws PropertyRepairException;
-	void updatePropertyRepair(Long id,String columnName, String newValue);
+	boolean updatePropertyRepair(PropertyRepair propertyRepair);
 
 }

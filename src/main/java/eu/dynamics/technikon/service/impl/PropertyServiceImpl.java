@@ -67,8 +67,12 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public void updateProperty(String propertyId, String columnName, String newValue) {
-		propertyRepository.updateProperty(propertyId, columnName, newValue);
+	public boolean updateProperty(Property property) throws PropertyException {
+		boolean updatePropertyResult = propertyRepository.updateProperty(property);
+		if(updatePropertyResult == false) {
+			throw new PropertyException("Property has not updated");
+		}
+		return updatePropertyResult;
 
 	}
 

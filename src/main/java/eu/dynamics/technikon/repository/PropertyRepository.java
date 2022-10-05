@@ -11,7 +11,7 @@ public interface PropertyRepository extends Repository<Property, Long> {
 
 	Property readPropertyId(String propertyId);
 
-	void updateProperty(String propertyId,String columnName, String newValue);
+	boolean updateProperty(Property property);
 
 	boolean deletePermantly(Long propertyId) throws PropertyException;
 

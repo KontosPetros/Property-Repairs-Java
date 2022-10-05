@@ -34,27 +34,27 @@ public class TechnikonMain {
 		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
 
-		PropertyOwner propertyOwner = new PropertyOwner();
-		propertyOwner.setVatNumber("100");
-		propertyOwner.setName("kostas");
-		propertyOwner.setAddress("papagou");
-		propertyOwner.setPassword("25648");
-		propertyOwner.setSurname("papadopoulos");
-		propertyOwner.setPhoneNumber("2356665");
-		propertyOwner.setUsername("kos");
-		propertyOwner.setEmail("kostas@mail.com");
-		//propertyOwnerService.addPropertyOwner(propertyOwner);
-
-		PropertyOwner propertyOwner2 = new PropertyOwner();
-		propertyOwner2.setVatNumber("200");
-		propertyOwner2.setName("petros");
-		propertyOwner2.setAddress("dodonis");
-		propertyOwner2.setPassword("1234");
-		propertyOwner2.setSurname("dimitriou");
-		propertyOwner2.setPhoneNumber("210457");
-		propertyOwner2.setUsername("petr");
-		propertyOwner2.setEmail("petros@mail.com");
-		//propertyOwnerService.addPropertyOwner(propertyOwner2);
+//		PropertyOwner propertyOwner = new PropertyOwner();
+//		propertyOwner.setVatNumber("100");
+//		propertyOwner.setName("kostas");
+//		propertyOwner.setAddress("papagou");
+//		propertyOwner.setPassword("25648");
+//		propertyOwner.setSurname("papadopoulos");
+//		propertyOwner.setPhoneNumber("2356665");
+//		propertyOwner.setUsername("kos");
+//		propertyOwner.setEmail("kostas@mail.com");
+//		propertyOwnerService.addPropertyOwner(propertyOwner);
+//
+//		PropertyOwner propertyOwner2 = new PropertyOwner();
+//		propertyOwner2.setVatNumber("200");
+//		propertyOwner2.setName("petros");
+//		propertyOwner2.setAddress("dodonis");
+//		propertyOwner2.setPassword("1234");
+//		propertyOwner2.setSurname("dimitriou");
+//		propertyOwner2.setPhoneNumber("210457");
+//		propertyOwner2.setUsername("petr");
+//		propertyOwner2.setEmail("petros@mail.com");
+//		propertyOwnerService.addPropertyOwner(propertyOwner2);
 		
 		//search by mail
 		//System.out.println(propertyOwnerService.searchEmail("kostas@mail.com"));
@@ -80,23 +80,30 @@ public class TechnikonMain {
 		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
 		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
 
-		Property propertyTest = new Property();
-		propertyTest.setAddress("larisa");
-		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
-		propertyTest.setPropertyId("23456");
-		propertyTest.setYearOfConstruction("2019");
-		propertyTest.setPropertyOwner(propertyOwner);
-		//propertyService.addProperty(propertyTest);
-	
-
-		Property propertyTest2 = new Property();
-
-		propertyTest2.setAddress("volos");
-		propertyTest2.setTypeOfProperty(TypeOfProperty.DETACHED_HOUSE);
-		propertyTest2.setPropertyId("34567");
-		propertyTest2.setYearOfConstruction("2019");
-		propertyTest2.setPropertyOwner(propertyOwner);
-		//propertyService.addProperty(propertyTest2);
+//		Property propertyTest = new Property();
+//		propertyTest.setAddress("larisa");
+//		propertyTest.setTypeOfProperty(TypeOfProperty.APARTMENT);
+//		propertyTest.setPropertyId("23456");
+//		propertyTest.setYearOfConstruction("2019");
+//		propertyTest.setPropertyOwner(propertyOwner);
+//		propertyService.addProperty(propertyTest);
+//	
+//
+//		Property propertyTest2 = new Property();
+//
+//		propertyTest2.setAddress("volos");
+//		propertyTest2.setTypeOfProperty(TypeOfProperty.DETACHED_HOUSE);
+//		propertyTest2.setPropertyId("34567");
+//		propertyTest2.setYearOfConstruction("2019");
+//		propertyTest2.setPropertyOwner(propertyOwner);
+//		propertyService.addProperty(propertyTest2);
+		
+		//update Property
+//       Property propertyUpdate = propertyService.searchPropertyId("34567");
+//       propertyUpdate.setAddress("Thessaloniki");
+//       propertyService.updateProperty(propertyUpdate);
+		
+		
 
 		//search by property id
 		//System.out.println(propertyService.searchPropertyId("23456"));
@@ -120,30 +127,35 @@ public class TechnikonMain {
 		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
 		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
 
-		PropertyRepair propertyRepairTest = new PropertyRepair();
-		propertyRepairTest.setScheduledDate(LocalDateTime.of(2019, 9, 9, 9, 9));
-		propertyRepairTest.setDescription("repair plumbing");
-		propertyRepairTest.setTypeOfRepair(TypeOfRepair.PLUMBING);
-		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
-		propertyRepairTest.setCost(new BigDecimal(150));
-		propertyRepairTest.setWorkDescription("sadsadas");
+//		PropertyRepair propertyRepairTest = new PropertyRepair();
+//		propertyRepairTest.setScheduledDate(LocalDateTime.of(2019, 9, 9, 9, 9));
+//		propertyRepairTest.setDescription("repair plumbing");
+//		propertyRepairTest.setTypeOfRepair(TypeOfRepair.PLUMBING);
+//		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
+//		propertyRepairTest.setCost(new BigDecimal(150));
+//		propertyRepairTest.setWorkDescription("sadsadas");
+//		
+//		propertyRepairTest.setProperty(propertyTest);
+//		propertyRepairTest.setOwner(propertyTest.getPropertyOwner());
+//		propertyRepairService.addPropertyRepair(propertyRepairTest);
+//
+//		PropertyRepair propertyRepairTest2 = new PropertyRepair();
+//		propertyRepairTest2.setScheduledDate(LocalDateTime.of(2020, 9, 9, 9, 9));
+//		propertyRepairTest2.setDescription("lights repair");
+//		propertyRepairTest2.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
+//		propertyRepairTest2.setStatusOfRepair(StatusOfRepair.COMPLETE);
+//		propertyRepairTest2.setCost(new BigDecimal(80));
+//		propertyRepairTest2.setWorkDescription("aaaaa");
+//	
+//		propertyRepairTest2.setProperty(propertyTest);
+//		propertyRepairTest2.setOwner(propertyTest.getPropertyOwner());
+//		propertyRepairService.addPropertyRepair(propertyRepairTest2);
 		
-		propertyRepairTest.setProperty(propertyTest);
-		propertyRepairTest.setOwner(propertyTest.getPropertyOwner());
-		//propertyRepairService.addPropertyRepair(propertyRepairTest);
-
-		PropertyRepair propertyRepairTest2 = new PropertyRepair();
-		propertyRepairTest2.setScheduledDate(LocalDateTime.of(2020, 9, 9, 9, 9));
-		propertyRepairTest2.setDescription("lights repair");
-		propertyRepairTest2.setTypeOfRepair(TypeOfRepair.ELECTRICAL_WORK);
-		propertyRepairTest2.setStatusOfRepair(StatusOfRepair.COMPLETE);
-		propertyRepairTest2.setCost(new BigDecimal(80));
-		propertyRepairTest2.setWorkDescription("aaaaa");
-	
-		propertyRepairTest2.setProperty(propertyTest);
-		propertyRepairTest2.setOwner(propertyTest.getPropertyOwner());
-		//propertyRepairService.addPropertyRepair(propertyRepairTest2);
 		
+		   //update PropertyRepair
+	       PropertyRepair propertyRepairUpdate = propertyRepairService.searchPropertyRepairId(1L);
+	       propertyRepairUpdate.setDescription("doors repair");
+	       propertyRepairService.updatePropertyRepair(propertyRepairUpdate);
 		
 		
 		//search by date
