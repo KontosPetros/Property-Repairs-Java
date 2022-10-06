@@ -22,6 +22,9 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 		this.propertyRepairRepository = propertyRepairRepository;
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public void loadPropertyRepairData(List<String> propertyRepairList, PropertyOwnerService propertyOwnerService,
 			PropertyService propertyService) throws Exception {
@@ -61,6 +64,7 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 
 		}
 	}
+
 
 	@Override
 	public List<PropertyRepair> displayPropertyRepair() {

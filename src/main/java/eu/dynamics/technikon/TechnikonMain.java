@@ -38,76 +38,85 @@ public class TechnikonMain {
 		System.out.println("LOAD PROPERTY OWNER DATA");
 		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
 		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
-		// propertyOwnerService.loadPropertyOwnerData(propertyOwnerList);
+		propertyOwnerService.loadPropertyOwnerData(propertyOwnerList);
 
 		System.out.println("LOAD PROPERTY DATA");
 		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
 		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
-		// propertyService.loadPropertyData(propertyList,propertyOwnerService);
+		propertyService.loadPropertyData(propertyList, propertyOwnerService);
 
 		System.out.println("LOAD PROPERTY REPAIR DATA");
 		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
 		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
-		// propertyRepairService.loadPropertyRepairData(propertyRepairList,propertyOwnerService,propertyService);
+		propertyRepairService.loadPropertyRepairData(propertyRepairList, propertyOwnerService, propertyService);
+		
+		
+		
+		
+		System.out.println("change database hibernate.hbm2ddl.auto to update to run below methods");
+		
+		
 
 		// search by mail
-		// System.out.println(propertyOwnerService.searchEmail("kosta@mail.com"));
+		System.out.println(propertyOwnerService.searchEmail("kosta@mail.com"));
 
 		// search by vatNumber
-		// System.out.println(propertyOwnerService.searchVatNumber("101213"));
+		System.out.println(propertyOwnerService.searchVatNumber("101213"));
 
-		// update owner
-		// propertyOwnerService.updatePropertyOwner(2L, "pesas@mail.com", "dodonis",
-		// "new password");
+		// update owners email,address,password
+		System.out.println(propertyOwnerService.findOwnerById(2L));
+		propertyOwnerService.updatePropertyOwner(2L, "new@mail.com", "dodonis", "new password");
+		System.out.println(propertyOwnerService.findOwnerById(2L));
 
 		// delete safely and display
-//		System.out.println("property owner table BEFORE safely deletion");
-//		propertyOwnerService.displayPropertyOwner().forEach(System.out::println);
-//		
-//		propertyOwnerService.deleteSafely("151617");
-//		
-//		System.out.println("property owner table AFTER safely deletion");
-//		propertyOwnerService.displayPropertyOwner().forEach(System.out::println);
+		System.out.println("property owner table BEFORE safely deletion");
+		propertyOwnerService.displayPropertyOwner().forEach(System.out::println);
+		propertyOwnerService.deleteSafely("151617");
+		System.out.println("property owner table AFTER safely deletion");
+		propertyOwnerService.displayPropertyOwner().forEach(System.out::println);
 
 		// search by property id
-		// System.out.println(propertyService.searchPropertyId("5461"));
+		System.out.println(propertyService.searchPropertyId("5461"));
 
 		// search by vatNumber
-		// propertyService.searchVatNumber("201213").forEach(System.out::println);
-
-		// update Property
-//		Property propertyUpdate = propertyService.findPropertyById(2L);
-//		propertyUpdate.setAddress("Thessaloniki");
-//		propertyService.updateProperty(propertyUpdate);
+		propertyService.searchVatNumber("201213").forEach(System.out::println);
 
 		// display all properties
-		// propertyService.displayProperty().forEach(System.out::println);
+		propertyService.displayProperty().forEach(System.out::println);
 
 		// delete property permantly
-		// propertyService.deletePermantly(1L);
+		// display all properties
+		propertyService.displayProperty().forEach(System.out::println);
+		propertyService.deletePermantly(1L);
+		propertyService.displayProperty().forEach(System.out::println);
+
+		// update Property
+		Property propertyUpdate = propertyService.findPropertyById(2L);
+		propertyUpdate.setAddress("Thessaloniki");
+		propertyService.updateProperty(propertyUpdate);
 
 		// search by date
-		// propertyRepairService.searchDate(LocalDateTime.of(2023, 4, 1, 10, 10,
-		// 30)).forEach(System.out::println);
+		propertyRepairService.searchDate(LocalDateTime.of(2023, 4, 1, 10, 10, 30)).forEach(System.out::println);
 
 		// search by range of dates
-		// propertyRepairRepository.readRangeOfDates(LocalDateTime.of(2020, 10, 9, 9,
-		// 9), LocalDateTime.of(2025, 9, 9, 9, 9)).forEach(System.out::println);
+		propertyRepairRepository
+				.readRangeOfDates(LocalDateTime.of(2020, 10, 9, 9, 9), LocalDateTime.of(2025, 9, 9, 9, 9))
+				.forEach(System.out::println);
 
 		// search users by vatnumber
-		// propertyRepairService.searchVatNumber("201213").forEach(System.out::println);
+		propertyRepairService.searchVatNumber("201213").forEach(System.out::println);
 
 //		   update PropertyRepair
-//	       PropertyRepair propertyRepairUpdate = propertyRepairService.searchPropertyRepairId(3L);
-//	       propertyRepairUpdate.setStatusOfRepair(StatusOfRepair.IN_PROGRESS);
-//	       propertyRepairService.updatePropertyRepair(propertyRepairUpdate);
+		PropertyRepair propertyRepairUpdate = propertyRepairService.searchPropertyRepairId(3L);
+		propertyRepairUpdate.setStatusOfRepair(StatusOfRepair.IN_PROGRESS);
+		propertyRepairService.updatePropertyRepair(propertyRepairUpdate);
 
 		// display all property repairs
-		// propertyRepairService.displayPropertyRepair().forEach(System.out::println);
+		propertyRepairService.displayPropertyRepair().forEach(System.out::println);
 
-//		propertyRepairService.displayPropertyRepair().forEach(System.out::println);
-//		propertyRepairService.deleteSafely(5L);
-//		propertyRepairService.displayPropertyRepair().forEach(System.out::println);
+		propertyRepairService.displayPropertyRepair().forEach(System.out::println);
+		propertyRepairService.deleteSafely(5L);
+		propertyRepairService.displayPropertyRepair().forEach(System.out::println);
 
 		JpaUtil.shutdown();
 

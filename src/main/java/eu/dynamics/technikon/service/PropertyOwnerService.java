@@ -17,6 +17,7 @@ public interface PropertyOwnerService {
 
 	PropertyOwner searchEmail(String email) throws PropertyOwnerException;
 
+
 	List<PropertyOwner> displayPropertyOwner();
 
 	boolean updatePropertyOwner(Long propertyOwnerId, String email, String address, String password)

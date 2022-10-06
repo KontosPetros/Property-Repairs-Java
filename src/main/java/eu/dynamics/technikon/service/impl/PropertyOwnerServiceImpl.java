@@ -46,6 +46,7 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 
 	}
 
+	
 	@Override
 	public List<PropertyOwner> displayPropertyOwner() {
 
