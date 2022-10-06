@@ -16,6 +16,7 @@ public class CSVReader implements Reader{
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(Path.of(filePath))){
             String line;
+            reader.readLine();
             while ((line = reader.readLine()) != null){
                 lines.add(line);
             }

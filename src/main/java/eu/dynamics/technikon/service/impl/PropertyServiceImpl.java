@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import eu.dynamics.technikon.exception.PropertyException;
+import eu.dynamics.technikon.exception.PropertyOwnerException;
 import eu.dynamics.technikon.model.Property;
+import eu.dynamics.technikon.model.TypeOfProperty;
 import eu.dynamics.technikon.repository.PropertyRepository;
+import eu.dynamics.technikon.service.PropertyOwnerService;
 import eu.dynamics.technikon.service.PropertyService;
 
 public class PropertyServiceImpl implements PropertyService {
@@ -14,6 +17,34 @@ public class PropertyServiceImpl implements PropertyService {
 
 	public PropertyServiceImpl(PropertyRepository propertyRepository) {
 		this.propertyRepository = propertyRepository;
+	}
+
+	@Override
+	public void loadPropertyData(List<String> propertyList, PropertyOwnerService propertyOwnerService)
+			throws PropertyException {
+
+		for (String propertyData : propertyList) {
+			System.out.println(propertyData);
+			String splitData[] = propertyData.strip().split(",");
+
+			Property property = new Property();
+			property.setPropertyId(splitData[0]);
+			property.setAddress(splitData[1]);
+			property.setYearOfConstruction(splitData[2]);
+			property.setTypeOfProperty(TypeOfProperty.valueOf(splitData[3]));
+
+			try {
+
+				property.setPropertyOwner(propertyOwnerService.searchVatNumber(splitData[4]));
+
+			} catch (PropertyOwnerException e) {
+				e.printStackTrace();
+			}
+
+			addProperty(property);
+
+		}
+
 	}
 
 	@Override
@@ -69,7 +100,7 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	public boolean updateProperty(Property property) throws PropertyException {
 		boolean updatePropertyResult = propertyRepository.updateProperty(property);
-		if(updatePropertyResult == false) {
+		if (updatePropertyResult == false) {
 			throw new PropertyException("Property has not updated");
 		}
 		return updatePropertyResult;

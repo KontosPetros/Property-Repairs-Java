@@ -8,6 +8,11 @@ import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
 
 public class GeneralUtility {
+	
+	
+	
+	
+	
 
 	public static boolean isValidEmail(String email) {
 		String regex = "^(.+)@(.+)$";

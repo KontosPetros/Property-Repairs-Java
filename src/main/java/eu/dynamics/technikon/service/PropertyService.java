@@ -19,4 +19,6 @@ public interface PropertyService {
 	boolean deleteSafely(String propertyId) throws PropertyException;
 
 	boolean deletePermantly(Long propertyId) throws PropertyException;
+
+	void loadPropertyData(List<String> propertyList, PropertyOwnerService propertyOwnerService) throws PropertyException;
 }

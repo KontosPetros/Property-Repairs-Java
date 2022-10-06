@@ -1,5 +1,6 @@
 package eu.dynamics.technikon.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.Where;
@@ -33,7 +34,7 @@ public class PropertyOwner {
 	private String password;
 
 	@OneToMany(mappedBy = "propertyOwner", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Property> properties;
+	private List<Property> properties = new ArrayList<>();
 
 	private Integer isActive = 1;
 
@@ -99,6 +100,34 @@ public class PropertyOwner {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	
+	
+	
+	
+	public long getId() {
+		return id;
+	}
+
+	public List<Property> getProperties() {
+		return properties;
+	}
+
+	public Integer getIsActive() {
+		return isActive;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setProperties(List<Property> properties) {
+		this.properties = properties;
+	}
+
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
