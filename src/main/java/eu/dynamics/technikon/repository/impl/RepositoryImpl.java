@@ -24,6 +24,7 @@ public abstract class RepositoryImpl<T, K> implements Repository<T, K> {
 			entityManager.getTransaction().begin();
 			entityManager.persist(t);
 			entityManager.getTransaction().commit();
+
 			return Optional.of(t);
 		} catch (Exception e) {
 			return Optional.empty();

@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import eu.dynamics.technikon.exception.PropertyOwnerException;
-import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
-import eu.dynamics.technikon.model.TypeOfProperty;
 import eu.dynamics.technikon.repository.PropertyOwnerRepository;
 import eu.dynamics.technikon.service.PropertyOwnerService;
 
@@ -86,7 +84,7 @@ public class PropertyOwnerServiceImpl implements PropertyOwnerService {
 	}
 
 	@Override
-	public PropertyOwner getOwnerById(Long id) throws PropertyOwnerException {
+	public PropertyOwner findOwnerById(Long id) throws PropertyOwnerException {
 		Optional<PropertyOwner> dbPropertyOwner = propertyOwnerRepository.read(id);
 		if (dbPropertyOwner.isEmpty()) {
 			throw new PropertyOwnerException("the property owner has not been found");

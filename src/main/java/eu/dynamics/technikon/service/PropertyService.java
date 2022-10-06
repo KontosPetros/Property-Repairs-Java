@@ -8,6 +8,8 @@ import eu.dynamics.technikon.model.Property;
 public interface PropertyService {
 	void addProperty(Property property) throws PropertyException;
 
+	Property findPropertyById(Long id) throws PropertyException;
+
 	List<Property> displayProperty();
 
 	Property searchPropertyId(String propertyId) throws PropertyException;
@@ -20,5 +22,6 @@ public interface PropertyService {
 
 	boolean deletePermantly(Long propertyId) throws PropertyException;
 
-	void loadPropertyData(List<String> propertyList, PropertyOwnerService propertyOwnerService) throws PropertyException;
+	void loadPropertyData(List<String> propertyList, PropertyOwnerService propertyOwnerService)
+			throws PropertyException;
 }

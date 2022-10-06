@@ -102,10 +102,6 @@ public class PropertyOwner {
 		this.password = password;
 	}
 
-	
-	
-	
-	
 	public long getId() {
 		return id;
 	}

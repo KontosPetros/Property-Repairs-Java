@@ -8,11 +8,6 @@ import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyOwner;
 
 public class GeneralUtility {
-	
-	
-	
-	
-	
 
 	public static boolean isValidEmail(String email) {
 		String regex = "^(.+)@(.+)$";
@@ -36,15 +31,16 @@ public class GeneralUtility {
 
 		return true;
 	}
-     public static boolean isValidProperty (String propertyId, List<Property> list) {
-    	 if(propertyId == null) return false;
-    	 for (Property property : list) {
-    		 if(property.getPropertyId().equals(propertyId)) {
-    			 return false;
-    		 }
-    	 }
-    	 return true; 
-     }
-     
-     
+
+	public static boolean isValidProperty(String propertyId, List<Property> list) {
+		if (propertyId == null)
+			return false;
+		for (Property property : list) {
+			if (property.getPropertyId().equals(propertyId)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

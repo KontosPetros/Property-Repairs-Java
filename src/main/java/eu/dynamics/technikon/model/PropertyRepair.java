@@ -21,6 +21,7 @@ public class PropertyRepair {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	private LocalDateTime scheduledDate;
 	private String description;
 	@Enumerated(EnumType.STRING)
@@ -126,7 +127,7 @@ public class PropertyRepair {
 	public String toString() {
 		return "PropertyRepair [id=" + id + ", scheduledDate=" + scheduledDate + ", description=" + description
 				+ ", typeOfRepair=" + typeOfRepair + ", statusOfRepair=" + statusOfRepair + ", cost=" + cost
-				+ ", workDescription=" + workDescription + ", propertyOwner=" + propertyOwner.getVatNumber() + ", property=" + property.getPropertyId()
+				+ ", workDescription=" + workDescription + ", propertyOwner=" + propertyOwner.getId() + ", property=" + property.getPropertyId()
 				+ ", isActive=" + isActive + "]";
 	}
 

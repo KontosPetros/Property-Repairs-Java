@@ -9,10 +9,13 @@ import eu.dynamics.technikon.model.PropertyRepair;
 public interface PropertyRepairRepository extends Repository<PropertyRepair, Long> {
 
 	List<PropertyRepair> readDate(LocalDateTime date);
+
 	List<PropertyRepair> readRangeOfDates(LocalDateTime dateFrom, LocalDateTime dateUntil);
+
 	List<PropertyRepair> readVatNumber(String vatNumber);
 
 	boolean deleteSafely(Long id) throws PropertyRepairException;
+
 	boolean updatePropertyRepair(PropertyRepair propertyRepair);
 
 }

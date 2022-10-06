@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import eu.dynamics.technikon.exception.PropertyException;
-import eu.dynamics.technikon.exception.PropertyOwnerException;
 import eu.dynamics.technikon.exception.PropertyRepairException;
-import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.model.PropertyRepair;
 import eu.dynamics.technikon.model.StatusOfRepair;
-import eu.dynamics.technikon.model.TypeOfProperty;
 import eu.dynamics.technikon.model.TypeOfRepair;
 import eu.dynamics.technikon.repository.PropertyRepairRepository;
 import eu.dynamics.technikon.service.PropertyOwnerService;
@@ -27,17 +24,10 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 
 	@Override
 	public void loadPropertyRepairData(List<String> propertyRepairList, PropertyOwnerService propertyOwnerService,
-			PropertyService propertyService) {
+			PropertyService propertyService) throws Exception {
 
 		for (String propertyRepairData : propertyRepairList) {
 			String splitData[] = propertyRepairData.strip().split(",");
-
-			System.out.println("epomeno repair");
-			System.out.println(propertyRepairData);
-			System.out.println();
-			System.out.println();
-			System.out.println();
-
 			PropertyRepair propertyRepair = new PropertyRepair();
 			propertyRepair.setScheduledDate(LocalDateTime.parse(splitData[0]));
 			propertyRepair.setDescription(splitData[1]);
@@ -47,19 +37,17 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 
 			try {
 
-				propertyRepair.setProperty(propertyService.searchPropertyId(splitData[6]));
-				propertyRepair.setOwner(propertyService.searchPropertyId(splitData[6]).getPropertyOwner());
+				propertyRepair.setProperty(propertyService.findPropertyById(Long.parseLong(splitData[6])));
+				propertyRepair
+						.setOwner(propertyService.findPropertyById(Long.parseLong(splitData[6])).getPropertyOwner());
 
 			} catch (PropertyException e) {
 				e.printStackTrace();
 			}
-		
+
 			propertyRepair.setWorkDescription(splitData[7]);
-			System.out.println("going to add repair");
-			System.out.println(propertyRepair);
-			
-			propertyRepairRepository.add(propertyRepair);
-			System.out.println(propertyRepair);
+
+			addPropertyRepair(propertyRepair);
 
 		}
 

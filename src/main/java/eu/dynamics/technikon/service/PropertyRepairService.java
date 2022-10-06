@@ -25,6 +25,6 @@ public interface PropertyRepairService {
 	boolean updatePropertyRepair(PropertyRepair propertyRepair) throws PropertyRepairException;
 
 	void loadPropertyRepairData(List<String> propertyRepairList, PropertyOwnerService propertyOwnerService,
-			PropertyService propertyService);
+			PropertyService propertyService) throws Exception;
 
 }

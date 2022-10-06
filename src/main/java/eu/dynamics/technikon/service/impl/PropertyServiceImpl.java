@@ -24,9 +24,7 @@ public class PropertyServiceImpl implements PropertyService {
 			throws PropertyException {
 
 		for (String propertyData : propertyList) {
-			System.out.println(propertyData);
 			String splitData[] = propertyData.strip().split(",");
-
 			Property property = new Property();
 			property.setPropertyId(splitData[0]);
 			property.setAddress(splitData[1]);
@@ -105,6 +103,15 @@ public class PropertyServiceImpl implements PropertyService {
 		}
 		return updatePropertyResult;
 
+	}
+
+	@Override
+	public Property findPropertyById(Long id) throws PropertyException {
+		Optional<Property> dbproperty = propertyRepository.read(id);
+		if (dbproperty.isEmpty()) {
+			throw new PropertyException("The property has not been added ");
+		}
+		return dbproperty.get();
 	}
 
 }

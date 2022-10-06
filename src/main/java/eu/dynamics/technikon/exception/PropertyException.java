@@ -2,7 +2,6 @@ package eu.dynamics.technikon.exception;
 
 public class PropertyException extends Exception {
 
-
 	/**
 	 * 
 	 */

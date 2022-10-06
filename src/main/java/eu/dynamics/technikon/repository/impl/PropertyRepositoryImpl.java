@@ -7,7 +7,6 @@ import eu.dynamics.technikon.model.Property;
 import eu.dynamics.technikon.repository.PropertyRepository;
 import jakarta.persistence.EntityManager;
 
-
 public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> implements PropertyRepository {
 
 	public PropertyRepositoryImpl(EntityManager entityManager) {
@@ -75,14 +74,13 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long> imple
 	}
 
 	@Override
-	public boolean updateProperty(Property property)  {
+	public boolean updateProperty(Property property) {
 
 		Property persistentInstance = super.getEntityManager().find(getEntityClass(), property.getId());
 		if (persistentInstance != null) {
-			
+
 			try {
-				
-			
+
 				super.getEntityManager().getTransaction().begin();
 				super.getEntityManager().merge(persistentInstance);
 				super.getEntityManager().getTransaction().commit();
