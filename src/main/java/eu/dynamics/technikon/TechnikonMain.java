@@ -1,7 +1,12 @@
 package eu.dynamics.technikon;
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import eu.dynamics.technikon.jpautil.JpaUtil;
 import eu.dynamics.technikon.model.Property;
@@ -22,17 +27,44 @@ import eu.dynamics.technikon.service.PropertyService;
 import eu.dynamics.technikon.service.impl.PropertyOwnerServiceImpl;
 import eu.dynamics.technikon.service.impl.PropertyRepairServiceImpl;
 import eu.dynamics.technikon.service.impl.PropertyServiceImpl;
+import eu.dynamics.technikon.utility.CSVReader;
+import eu.dynamics.technikon.utility.Reader;
 import jakarta.persistence.EntityManager;
 
 public class TechnikonMain {
 
 	public static void main(String[] args) throws Exception {
+		Reader csvReader = new CSVReader();
+		List<String> propertyOwnerList = csvReader.read("C:\\Users\\ΚΩΣΤΑΣ\\Desktop\\Technikon\\Technikon\\book.csv");
+		List<String> property = new ArrayList<>();
+		List<String> propertyRepair = new ArrayList<>();
+		System.out.println(propertyOwnerList);
+		
+		
+		
+		
+//		String csvFile = "C:\\Users\\ΚΩΣΤΑΣ\\Desktop\\Technikon\\Technikon\\book.csv";
+//	    CSVReader.read(csvFile);
+		
+//		Scanner sc = new Scanner(new File("C:\\Users\\ΚΩΣΤΑΣ\\Desktop\\Technikon\\Technikon\\book.csv"));
+//		sc.useDelimiter(" , ");
+//		while(sc.hasNext()) {
+//			System.out.println(sc.next());
+//		}
+		
+//		sc.close();
+//				String line = "";
+//				String splitBy = ",";
+//				BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ΚΩΣΤΑΣ\\Desktop\\Technikon\\book.csv"));
+//				while((line = br.readLine()) != null){
+//					String[] property = line.split(splitBy);
+//				}
 
-		EntityManager entityManager = JpaUtil.getEntityManager();
-
-		System.out.println("---------------------------- PropertyOwner----------------------------");
-		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
-		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
+//		EntityManager entityManager = JpaUtil.getEntityManager();
+//
+//		System.out.println("---------------------------- PropertyOwner----------------------------");
+//		PropertyOwnerRepository propertyOwnerRepository = new PropertyOwnerRepositoryImpl(entityManager);
+//		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwnerRepository);
 
 //		PropertyOwner propertyOwner = new PropertyOwner();
 //		propertyOwner.setVatNumber("100");
@@ -75,10 +107,10 @@ public class TechnikonMain {
 		
 		
 
-		System.out.println("---------------------------- Property----------------------------");
-
-		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
-		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
+//		System.out.println("---------------------------- Property----------------------------");
+//
+//		PropertyRepository propertyRepository = new PropertyRepositoryImpl(entityManager);
+//		PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
 
 //		Property propertyTest = new Property();
 //		propertyTest.setAddress("larisa");
@@ -122,10 +154,10 @@ public class TechnikonMain {
 		//propertyService.deletePermantly("23456");
 		
 
-		System.out.println("---------------------------- Property Repair----------------------------");
-
-		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
-		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
+//		System.out.println("---------------------------- Property Repair----------------------------");
+//
+//		PropertyRepairRepository propertyRepairRepository = new PropertyRepairRepositoryImpl(entityManager);
+//		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepairRepository);
 
 //		PropertyRepair propertyRepairTest = new PropertyRepair();
 //		propertyRepairTest.setScheduledDate(LocalDateTime.of(2019, 9, 9, 9, 9));
@@ -134,7 +166,8 @@ public class TechnikonMain {
 //		propertyRepairTest.setStatusOfRepair(StatusOfRepair.COMPLETE);
 //		propertyRepairTest.setCost(new BigDecimal(150));
 //		propertyRepairTest.setWorkDescription("sadsadas");
-//		
+//		propertyRepairService.addPropertyRepair(propertyRepairTest);
+////		
 //		propertyRepairTest.setProperty(propertyTest);
 //		propertyRepairTest.setOwner(propertyTest.getPropertyOwner());
 //		propertyRepairService.addPropertyRepair(propertyRepairTest);
@@ -146,16 +179,17 @@ public class TechnikonMain {
 //		propertyRepairTest2.setStatusOfRepair(StatusOfRepair.COMPLETE);
 //		propertyRepairTest2.setCost(new BigDecimal(80));
 //		propertyRepairTest2.setWorkDescription("aaaaa");
+//		propertyRepairService.addPropertyRepair(propertyRepairTest2);
 //	
 //		propertyRepairTest2.setProperty(propertyTest);
 //		propertyRepairTest2.setOwner(propertyTest.getPropertyOwner());
 //		propertyRepairService.addPropertyRepair(propertyRepairTest2);
 		
 		
-		   //update PropertyRepair
-	       PropertyRepair propertyRepairUpdate = propertyRepairService.searchPropertyRepairId(1L);
-	       propertyRepairUpdate.setDescription("doors repair");
-	       propertyRepairService.updatePropertyRepair(propertyRepairUpdate);
+//		   //update PropertyRepair
+//	       PropertyRepair propertyRepairUpdate = propertyRepairService.searchPropertyRepairId(1L);
+//	       propertyRepairUpdate.setDescription("doors repair");
+//	       propertyRepairService.updatePropertyRepair(propertyRepairUpdate);
 		
 		
 		//search by date
@@ -184,7 +218,7 @@ public class TechnikonMain {
 		//propertyService.deletePermantly(2L);
 		
 
-		JpaUtil.shutdown();
+//		JpaUtil.shutdown();
 
 	}
 
